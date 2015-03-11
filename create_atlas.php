@@ -1,11 +1,13 @@
+#!/usr/bin/env php
 <?php             
 	$conn = mysqli_connect('localhost', 'borrmant', 'sqlpsswd', 'atlas');
 	if (!$conn) {
 		die("Connection failed ". mysqli_connect_error() . "\n");
 	}
 	echo "Connected successfully\n";
+
 	// MHCs
-	$sql = "CREATE TABLE MHCs(
+	$sql = "CREATE TABLE IF NOT EXISTS MHCs(
 			MHCname VARCHAR(20) NOT NULL,
 			wtPDB CHAR(4) NOT NULL,
 			PRIMARY KEY (MHCname));";
@@ -21,10 +23,11 @@
 		echo "Data loaded successfully\n";
 	}
 	else {
-		echo "Error loading data: " . mysqli_error($conn) . "\n";
+		echo "Error loading MHCs data: " . mysqli_error($conn) . "\n";
 	}
+
 	// Authors
-	$sql = "CREATE TABLE Authors(
+	$sql = "CREATE TABLE IF NOT EXISTS Authors(
 			PMID INT(8) NOT NULL,
 			Authors TEXT NOT NULL,
 			Title TEXT NOT NULL,
@@ -45,7 +48,7 @@
 		echo "Error loading data: " . mysqli_error($conn) . "\n";
 	}
 	// TCRs
-	$sql = "CREATE TABLE TCRs(
+	$sql = "CREATE TABLE IF NOT EXISTS TCRs(
 			TCRname VARCHAR(50) NOT NULL,
 			TRAV VARCHAR(50) NOT NULL,
 			TRBV VARCHAR(50) NOT NULL,
@@ -66,7 +69,7 @@
 		echo "Error loading data: " . mysqli_error($conn) . "\n";
 	}
 	// Mutants
-	$sql = "CREATE TABLE Mutants(
+	$sql = "CREATE TABLE IF NOT EXISTS Mutants(
 			TCRname VARCHAR(100) NOT NULL,
 			MHCname VARCHAR(100) NOT NULL,
 			Mutant VARCHAR(100) NOT NULL,
@@ -81,10 +84,7 @@
 			ExpMethod VARCHAR(100) NOT NULL,
 			PRIMARY KEY (TCRname, MHCname, PEPseq, Mutant)
 			);";
-
-
-
-			
+	
 	if (mysqli_query($conn, $sql)) {
 		echo "Table created successfully\n";
 	}
@@ -99,7 +99,3 @@
 	else {
 		echo "Error loading data: " . mysqli_error($conn) . "\n";
 	}
-
-
-
-?>   

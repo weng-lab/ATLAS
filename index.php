@@ -50,8 +50,8 @@
              <form method="POST" action="search_results.php">
                 <?php
                 // Select TCR
-                $query="SELECT * FROM tcrs";
-                $result=mysqli_query($link, $query) or die(mysqli_error());
+                $query="SELECT * FROM TCRs";
+                $result=mysqli_query($link, $query) or die(mysqli_error($link));
                 $i = 0;
                 while($row=mysqli_fetch_array($result)) {
                     $TCRnames[$i] = $row['TCRname'];
