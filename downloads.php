@@ -21,10 +21,10 @@
         </div>
         <h2> Downloads </h2>
              <ul>
-                <li><a href="TCR_table.txt">TCR table</a></li>
-                <li><a href="MHCs.txt">MHC table</a></li>
-                <li><a href="Mutants.txt">Mutants table</a></li>
-                <li><a href="Authors.txt">Authors table</a></li>
+                <li><a href="static/TCR_table.txt">TCR table</a></li>
+                <li><a href="static/MHCs.txt">MHC table</a></li>
+                <li><a href="static/Mutants.txt">Mutants table</a></li>
+                <li><a href="static/Authors.txt">Authors table</a></li>
 
             </ul>
     </body>
