@@ -74,7 +74,7 @@
                 <input type="submit" name="TCRsel" value="Search"><br><br>
                 <?php
                 //Select TRAV
-                $query="SELECT TRAV from tcrs";
+                $query="SELECT TRAV from TCRs";
                 $result=mysqli_query($link, $query) or die(mysqli_error());
                 $i = 0;
                 while($row=mysqli_fetch_array($result)) {
@@ -100,7 +100,7 @@
                 <input type="submit" name="TRAVsel" value="Search"><br><br>
                  <?php
                 //Select TRBV
-                $query="SELECT TRBV from tcrs";
+                $query="SELECT TRBV from TCRs";
                 $result=mysqli_query($link, $query) or die(mysqli_error());
                 $i = 0;
                 while($row=mysqli_fetch_array($result)) {

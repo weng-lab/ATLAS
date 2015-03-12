@@ -42,7 +42,7 @@
             }
             if(isset($_POST['TCRsel'])) {
                 $TCR_id=$_POST['TCR'];
-                $query = "SELECT * FROM mutants WHERE TCRname='$TCR_id'";
+                $query = "SELECT * FROM Mutants WHERE TCRname='$TCR_id'";
                 $result=mysqli_query($link, $query) or die(mysqli_error());
                 ?>
                 <table border = '1px'>
@@ -98,7 +98,7 @@
             }   
             if(isset($_POST['TRAVsel'])) {
                 $TRAV_id=$_POST['TRAV'];
-                $query1 = "SELECT TCRname FROM tcrs WHERE TRAV='$TRAV_id'";
+                $query1 = "SELECT TCRname FROM TCRs WHERE TRAV='$TRAV_id'";
                 $result1=mysqli_query($link, $query1) or die(mysqli_error());
                 $i=0;
                 while($row = mysqli_fetch_array($result1)) {
@@ -112,7 +112,7 @@
                         $or_string.= " or ";
                     }
                 }
-                $query2 = "SELECT * FROM mutants WHERE ". $or_string;
+                $query2 = "SELECT * FROM Mutants WHERE ". $or_string;
                 $result2=mysqli_query($link, $query2) or die(mysqli_error());
                 ?>
                 <table border = '1px'>
@@ -171,7 +171,7 @@
             }   
             if(isset($_POST['TRBVsel'])) {
                 $TRBV_id=$_POST['TRBV'];
-                $query1 = "SELECT TCRname FROM tcrs WHERE TRBV='$TRBV_id'";
+                $query1 = "SELECT TCRname FROM TCRs WHERE TRBV='$TRBV_id'";
                 $result1=mysqli_query($link, $query1) or die(mysqli_error());
                 $i=0;
                 while($row = mysqli_fetch_array($result1)) {
@@ -185,7 +185,7 @@
                         $or_string.= " or ";
                     }
                 }
-                $query2 = "SELECT * FROM mutants WHERE ". $or_string;
+                $query2 = "SELECT * FROM Mutants WHERE ". $or_string;
                 $result2=mysqli_query($link, $query2) or die(mysqli_error());
                 ?>
                 <table border = '1px'>
