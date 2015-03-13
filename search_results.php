@@ -21,7 +21,9 @@
         </div>
         <div class="results">
             <?php  
-            $link = mysqli_connect('localhost', 'borrmant', 'sqlpsswd');   
+            $config = parse_ini_file('../.mysqlpasswd.ini');
+	    $link = mysqli_connect('localhost', $config['user'], 
+				   $config['pass'], $config['db']);
             if (!$link)   
             {   
               $error = 'Unable to connect to the database server.';   

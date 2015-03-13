@@ -1,6 +1,7 @@
 #!/usr/bin/env php
 <?php             
-	$conn = mysqli_connect('localhost', 'borrmant', 'sqlpsswd', 'atlas');
+	$config = parse_ini_file('../.mysqlpasswd.ini');
+	$conn = mysqli_connect('localhost', $config['user'], $config['pass'], $config['db']);
 	if (!$conn) {
 		die("Connection failed ". mysqli_connect_error() . "\n");
 	}
@@ -17,6 +18,7 @@
 	else {
 		echo "Error creating table: " . mysqli_error($conn) . "\n";
 	}
+
 	// Write to table
 	$sql = "LOAD DATA LOCAL INFILE '/cygwin64/home/Tyler/Research/TCR/ATLAS/MHCs.txt' INTO TABLE MHCs;";
 	if (mysqli_query($conn, $sql)) {
