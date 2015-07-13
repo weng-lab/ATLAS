@@ -38,7 +38,7 @@ def isolate(pdb, component):
 		OUT = open(component + '.pdb', 'w')
 		for line in IN:
 			row = line.split()
-			if 'TER' not in row:
+			if row[0] == 'ATOM':
 				if row[4] == 'D' or row[4] == 'E':
 					OUT.write(line)
 		IN.close()
@@ -48,7 +48,7 @@ def isolate(pdb, component):
 		OUT = open(component + '.pdb', 'w')
 		for line in IN:
 			row = line.split()
-			if 'TER' not in row:
+			if row[0] == 'ATOM':
 				if row[4] == 'A' or row[4] == 'B' or row[4] == 'C':
 					OUT.write(line)
 		IN.close()
@@ -132,6 +132,18 @@ def make_resfile(MHC_mut, MHC_mut_chain, TCR_mut, TCR_mut_chain, PEP_mut):
 			RF.write(res_num + ' C PIKAA ' + mut_aa + '\n')
 	RF.close()
 
+def fixbb(pdb, resfile, label):
+	'''
+	Design mutations using Rosetta's fixed backbone application
+	'''
+	if not os.path.exists('design_structures'):
+		os.makedirs('design_structures')
+	fixbb_cmd = [args.ros_path + 'rosetta_source/bin/fixbb.linuxgccrelease', '-database',
+	args.ros_path + 'rosetta_database/', '-s', pdb , '-resfile', resfile, '-suffix', label, 
+	'-extrachi_cutoff', '1', '-ex1', '-ex2', '-ex3', '-overwrite','-out:path:pdb', 'design_structures']
+	process = subprocess.Popen(fixbb_cmd)
+	process.wait()
+	
 
 def main():
 	# Read Mutants table into dataframe
@@ -165,7 +177,7 @@ def main():
 			os.remove('pMHC_score.sc')
 			os.remove('TCR.pdb')
 			os.remove('pMHC.pdb')
-
+	
 		# Design model TCR-pMHC
 		elif pd.isnull(row['true_PDB']):
 			template_pdb = str(row['template_PDB'])
@@ -177,7 +189,40 @@ def main():
 			PEP_mut = df.loc[i, 'PEP_mut']
 			# Make resfile for fixbb app
 			make_resfile(MHC_mut, MHC_mut_chain, TCR_mut, TCR_mut_chain, PEP_mut)
-			quit()
+			# Make label for structure
+			label = '_'.join(map(str,[MHC_mut, MHC_mut_chain, TCR_mut, TCR_mut_chain, PEP_mut]))
+			label = '_'+ re.sub('\s+','',label)
+			# Design mutations by fixbb app and save structure
+			fixbb(args.struct_path + template_pdb + '.pdb', 'resfile', label)
+			# Remove temp files
+			os.remove('resfile')
+			os.remove('score' + label + '.sc')
+			# Score TCR-pMHC
+			score('design_structures/' + template_pdb + label + '_0001.pdb', args.w, 'COM')
+			# Score TCR
+			isolate('design_structures/' + template_pdb + label + '_0001.pdb', 'TCR')
+			score('TCR.pdb', args.w, 'TCR')
+			# Score pMHC
+			isolate('design_structures/' + template_pdb + label + '_0001.pdb', 'pMHC')
+			score('pMHC.pdb', args.w, 'pMHC')
+			# Calculate dG bind
+			dG_scores = dG_bind('COM_score.sc', 'TCR_score.sc', 'pMHC_score.sc')
+			# Append to dataframe
+			for energy in dG_scores:
+				df.loc[i, energy] = dG_scores[energy]
+			# Remove temporary files
+			os.remove('COM_score.sc')
+			os.remove('TCR_score.sc')
+			os.remove('pMHC_score.sc')
+			os.remove('TCR.pdb')
+			os.remove('pMHC.pdb')
+
+	# Write to file
+	df.to_csv('test_table.txt', sep='\t')
+
+
+
+
 
 
 			
