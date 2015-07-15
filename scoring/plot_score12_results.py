@@ -3,6 +3,7 @@
 import argparse
 import numpy as np
 import matplotlib.pyplot as plt
+from matplotlib import lines
 import re
 from sklearn import linear_model
 
@@ -27,11 +28,13 @@ def load_data(fh):
 	dGs = []
 	dG_bind_score12 = []
 	score12=[]
+	TCR_name = []
 	header = fh.readline().strip().split('\t')
 	dG_col = header.index('DeltaG_kcal_per_mol')
 	Kd_col = header.index('Kd_microM')
 	dG_bind_score12_col = header.index('dG_bind_score12')
 	score12_col = header.index('score12')
+	name_col = header.index('TCRname')
 
 
 	for line in fh:
@@ -51,14 +54,14 @@ def load_data(fh):
 		if dG > -5.05:
 				dG = -5.05
 		dGs.append(dG)
-
 		dG_bind_score12.append(float(split_line[dG_bind_score12_col]))
 		score12.append(float(split_line[score12_col]))
+		TCR_name.append(split_line[name_col])
 
 	dGs = np.array(dGs)
 	dG_bind_score12 = np.array(dG_bind_score12)
 	score12 = np.array(score12)
-	return dGs, dG_bind_score12, score12
+	return dGs, dG_bind_score12, score12, TCR_name
 
 def add_constant(X):
 	'''
@@ -94,7 +97,7 @@ def main():
 	IN = open(args.infile, 'r')
 	
 	# Load data and normalize
-	dGs, dG_bind_score12, score12 =  load_data(IN)
+	dGs, dG_bind_score12, score12, TCR_name =  load_data(IN)
 	
 
 	# Stats
@@ -128,7 +131,18 @@ def main():
 	plt.ylabel('Rosetta dG bind with score12')
 	plt.savefig('dG_bind_score12_prediction_scatterplot.png')
 	plt.clf()
-	plt.scatter(dGs, score12)
+	A6_ind = [i for i, x in enumerate(TCR_name) if x == 'A6']
+	rem_ind = [i for i, x in enumerate(TCR_name) if x != 'A6']
+	plt.scatter(dGs[A6_ind], score12[A6_ind], c='r')
+	plt.scatter(dGs[rem_ind], score12[rem_ind], c='b')
+	my_labels=('A6 TCR', 'Other')
+	markers = ['o', 'o', 'o']
+	colors = ['r', 'b']
+	my_handles = []
+	for i in range(len(my_labels)):
+		my_handles.append(lines.Line2D([],[], marker=markers[i], markerfacecolor=colors[i], linestyle='None', 
+			markeredgecolor='k',markersize=7,markeredgewidth=1,label=my_labels[i]))
+	plt.legend(tuple(my_handles), tuple(my_labels), ncol=2, loc='upper center', numpoints=1)
 	plt.title('ATLAS TCR-pMHC complexes')
 	plt.xlabel('Experimentally measured binding affinity (kcal/mol)')
 	plt.ylabel('Rosetta score12')

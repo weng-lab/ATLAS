@@ -118,7 +118,7 @@ def main():
 	print 'Pearson\'s r: ' + str(r[0,1])
 	print '*******************************'
 	
-	print list(weight_matrix)
+	print np.mean(weight_matrix, axis = 0)
 	plt.plot(range(-15,1), range(-15,1), c='r')
 	plt.xlim(-13,-4)
 	plt.ylim(-12,-3)
