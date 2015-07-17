@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html>
 	<head>
        
@@ -6,6 +7,7 @@
         <title>ATLAS: Database of TCR-pMHC affinities and structures</title>	
 	</head>
 	<body>
+        <?php require 'ATLAS_functions.php'; ?>
         <div id="header">
             <img class="logo" src="atlas_img.png"  />
 
@@ -26,30 +28,8 @@
         </div>
         <div class="search">
             <h2> Search</h2>
-            <?php   
-            $config = parse_ini_file('../.mysqlpasswd.ini');
-	    $link = mysqli_connect('localhost', $config['user'], 
-				   $config['pass'], $config['db']);
-            if (!$link)   
-            {   
-              $error = 'Unable to connect to the database server.';   
-              include 'error.html.php';   
-              exit();   
-            }   
-            if (!mysqli_set_charset($link, 'utf8'))   
-            {   
-              $output = 'Unable to set database connection encoding.';   
-              include 'output.html.php';   
-              exit();   
-            }  
-            if (!mysqli_select_db($link, 'atlas'))   
-            {   
-              $error = 'Unable to locate the atlas database.';   
-              include 'error.html.php';   
-              exit();   
-            }
-            ?>
-             <form method="POST" action="search_results.php">
+            <?php $link = database_connect(); ?>
+            <form method="POST" action="search_results.php">
                 <?php
                 // Select TCR
                 $query="SELECT * FROM TCRs";

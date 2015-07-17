@@ -6,6 +6,7 @@
         <title>ATLAS: Database of TCR-pMHC affinities and structures</title>    
     </head>
     <body>
+        <?php require 'ATLAS_functions.php'; ?>
         <div id="header">
             <img class="logo" src="atlas_img.png"  />
 
@@ -21,27 +22,7 @@
         </div>
         <div class="results">
             <?php  
-            $config = parse_ini_file('../.mysqlpasswd.ini');
-	    $link = mysqli_connect('localhost', $config['user'], 
-				   $config['pass'], $config['db']);
-            if (!$link)   
-            {   
-              $error = 'Unable to connect to the database server.';   
-              include 'error.html.php';   
-              exit();   
-            }   
-            if (!mysqli_set_charset($link, 'utf8'))   
-            {   
-              $output = 'Unable to set database connection encoding.';   
-              include 'output.html.php';   
-              exit();   
-            }  
-            if (!mysqli_select_db($link, 'atlas'))   
-            {   
-              $error = 'Unable to locate the atlas database.';   
-              include 'error.html.php';   
-              exit();   
-            }
+            $link = database_connect();
             if(isset($_POST['TCRsel'])) {
                 $TCR_id=$_POST['TCR'];
                 $query = "SELECT * FROM Mutants WHERE TCRname='$TCR_id'";
