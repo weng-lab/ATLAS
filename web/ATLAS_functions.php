@@ -27,4 +27,14 @@ function database_connect() {
 	}
 	return $link;
 }
+
+function load_data($data_path, $table_name, $conn) {
+	$sql = "LOAD DATA LOCAL INFILE '" . $data_path . "' INTO TABLE " . $table_name . ";";
+	if (mysqli_query($conn, $sql)) {
+		echo "Data loaded successfully\n";
+	}
+	else {
+		echo "Error loading " . $table_name . " data: " . mysqli_error($conn) . "\n";
+	}
+}
 ?>
