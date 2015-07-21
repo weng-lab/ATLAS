@@ -10,7 +10,7 @@
 	// MHCs
 	$sql = "CREATE TABLE IF NOT EXISTS MHCs(
 			MHCname VARCHAR(20) NOT NULL,
-			wtPDB CHAR(4) NOT NULL,
+			class VARCHAR(2) NOT NULL,
 			PRIMARY KEY (MHCname));";
 	if (mysqli_query($conn, $sql)) {
 		echo "Table created successfully\n";
@@ -42,7 +42,6 @@
 			TCRname VARCHAR(50) NOT NULL,
 			TRAV VARCHAR(50) NOT NULL,
 			TRBV VARCHAR(50) NOT NULL,
-			wtPDB CHAR(4) NOT NULL,
 			PRIMARY KEY (TCRname));";
 	if (mysqli_query($conn, $sql)) {
 		echo "Table created successfully\n";
@@ -50,7 +49,7 @@
 	else {
 		echo "Error creating table: " . mysqli_error($conn) . "\n";
 	}
-	load_data($data_path . "TCR_table.txt", "TCRs", $conn);
+	load_data($data_path . "TCRs.txt", "TCRs", $conn);
 
 	// Mutants
 	
