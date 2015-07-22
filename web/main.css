@@ -25,6 +25,17 @@ img.logo {
   font-family: 'Arial';
   font-size: 12px;
 }
+.display {
+  background-color:#A0A1A9;
+  width:60em;
+  height:26em;
+  border: 5px solid #8F8F8F;
+  font-family: 'Arial';
+  font-size: 12px;
+
+
+
+}
 
 .nav ul {
       text-align: center;

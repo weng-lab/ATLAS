@@ -23,209 +23,60 @@
         <div class="results">
             <?php  
             $link = database_connect();
-            if(isset($_POST['TCRsel'])) {
-                $TCR_id=$_POST['TCR'];
-                $query = "SELECT * FROM Mutants WHERE TCRname='$TCR_id'";
+            if(isset($_POST['SEL'])) {
+                if (isset($_POST['disp_all'])) {
+                    $query_columns = '*';
+                    $col_count = 33;
+                }
+                else if (isset($_POST['opts'])) {
+                    $query_columns = join(', ',$_POST['opts']);
+                    $col_count = count($_POST['opts']);
+                }
+
+                if (isset($_POST['TCR'])) {
+                    $TCR_id = $_POST['TCR'];
+                    if ($TCR_id == 'all') {
+                        $query = "SELECT " . $query_columns . 
+                        " FROM Mutants";
+                        
+                    }
+                    else {
+                        $query = "SELECT " . $query_columns . 
+                        " FROM Mutants WHERE TCRname = '" . $TCR_id . "';";
+                    }           
+                }
                 $result=mysqli_query($link, $query) or die(mysqli_error());
-                ?>
-                <table border = '1px'>
-                    <thead>
-                        <tr>
-                            <th colspan='11' > <?php echo $TCR_id ?> TCR</th>
-                        </tr>
-                        <tr>
-                            <th> MHC name </th>
-                            <th> Mutant </th>
-                            <th> Kd </th>
-                            <th> Peptide Sequence </th>
-                            <th> WT PDB </th>
-                            <th> Mutant PDB </th>
-                            <th> CDR </th>
-                            <th> WT CDR sequence </th>
-                            <th> Chain </th>
-                            <th> PubMed ID</th>
-                            <th> Experimental Method </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        while($row = mysqli_fetch_array( $result )) {
-                            echo "<tr><td>";
-                            echo $row['MHCname'];
-                            echo "</td><td>";
-                            echo $row['Mutant'];
-                            echo "</td><td>";
-                            echo $row['Kd'];
-                            echo "</td><td>";
-                            echo $row['PEPseq'];
-                            echo "</td><td>";
-                            echo $row['wtPDB'];
-                            echo "</td><td>";
-                            echo $row['mutPDB'];
-                            echo "</td><td>";
-                            echo $row['CDR'];
-                            echo "</td><td>";
-                            echo $row['wtCDRseq'];
-                            echo "</td><td>";
-                            echo $row['Chain'];
-                            echo "</td><td>";
-                            echo $row['PMID'];
-                            echo "</td><td>";
-                            echo $row['ExpMethod'];
-                            echo "</td></tr>";
-                        }
-                    ?>
-                    </tbody>
-                </table>
-            <?php
-            }   
-            if(isset($_POST['TRAVsel'])) {
-                $TRAV_id=$_POST['TRAV'];
-                $query1 = "SELECT TCRname FROM TCRs WHERE TRAV='$TRAV_id'";
-                $result1=mysqli_query($link, $query1) or die(mysqli_error());
-                $i=0;
-                while($row = mysqli_fetch_array($result1)) {
-                    $TRAVtcrs[$i] = $row['TCRname'];
-                    $i++;
-                }
-                $or_string = '';
-                for ($i = 0; $i < count($TRAVtcrs); $i++) {
-                    $or_string .= "TCRname = '" . $TRAVtcrs[$i] . "'";
-                    if ($i < count($TRAVtcrs)-1) {
-                        $or_string.= " or ";
-                    }
-                }
-                $query2 = "SELECT * FROM Mutants WHERE ". $or_string;
-                $result2=mysqli_query($link, $query2) or die(mysqli_error());
-                ?>
-                <table border = '1px'>
-                    <thead>
-                        <tr>
-                            <th colspan='12' > <?php echo $TRAV_id ?> Gene</th>
-                        </tr>
-                        <tr>
-                            <th> TCR name </th>
-                            <th> MHC name </th>
-                            <th> Mutant </th>
-                            <th> Kd </th>
-                            <th> Peptide Sequence </th>
-                            <th> WT PDB </th>
-                            <th> Mutant PDB </th>
-                            <th> CDR </th>
-                            <th> WT CDR sequence </th>
-                            <th> Chain </th>
-                            <th> PubMed ID</th>
-                            <th> Experimental Method </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        while($row = mysqli_fetch_array( $result2 )) {
-                            echo "<tr><td>";
-                            echo $row['TCRname'];
-                            echo "</td><td>";
-                            echo $row['MHCname'];
-                            echo "</td><td>";
-                            echo $row['Mutant'];
-                            echo "</td><td>";
-                            echo $row['Kd'];
-                            echo "</td><td>";
-                            echo $row['PEPseq'];
-                            echo "</td><td>";
-                            echo $row['wtPDB'];
-                            echo "</td><td>";
-                            echo $row['mutPDB'];
-                            echo "</td><td>";
-                            echo $row['CDR'];
-                            echo "</td><td>";
-                            echo $row['wtCDRseq'];
-                            echo "</td><td>";
-                            echo $row['Chain'];
-                            echo "</td><td>";
-                            echo $row['PMID'];
-                            echo "</td><td>";
-                            echo $row['ExpMethod'];
-                            echo "</td></tr>";
-                        }
-                        ?>
-                    </tbody>
-                </table>
-            <?php
-            }   
-            if(isset($_POST['TRBVsel'])) {
-                $TRBV_id=$_POST['TRBV'];
-                $query1 = "SELECT TCRname FROM TCRs WHERE TRBV='$TRBV_id'";
-                $result1=mysqli_query($link, $query1) or die(mysqli_error());
-                $i=0;
-                while($row = mysqli_fetch_array($result1)) {
-                    $TRBVtcrs[$i] = $row['TCRname'];
-                    $i++;
-                }
-                $or_string = '';
-                for ($i = 0; $i < count($TRBVtcrs); $i++) {
-                    $or_string .= "TCRname = '" . $TRBVtcrs[$i] . "'";
-                    if ($i < count($TRBVtcrs)-1) {
-                        $or_string.= " or ";
-                    }
-                }
-                $query2 = "SELECT * FROM Mutants WHERE ". $or_string;
-                $result2=mysqli_query($link, $query2) or die(mysqli_error());
-                ?>
-                <table border = '1px'>
-                    <thead>
-                        <tr>
-                            <th colspan='12' > <?php echo $TRBV_id ?> Gene</th>
-                        </tr>
-                        <tr>
-                            <th> TCR name </th>
-                            <th> MHC name </th>
-                            <th> Mutant </th>
-                            <th> Kd </th>
-                            <th> Peptide Sequence </th>
-                            <th> WT PDB </th>
-                            <th> Mutant PDB </th>
-                            <th> CDR </th>
-                            <th> WT CDR sequence </th>
-                            <th> Chain </th>
-                            <th> PubMed ID</th>
-                            <th> Experimental Method </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        while($row = mysqli_fetch_array( $result2 )) {
-                            echo "<tr><td>";
-                            echo $row['TCRname'];
-                            echo "</td><td>";
-                            echo $row['MHCname'];
-                            echo "</td><td>";
-                            echo $row['Mutant'];
-                            echo "</td><td>";
-                            echo $row['Kd'];
-                            echo "</td><td>";
-                            echo $row['PEPseq'];
-                            echo "</td><td>";
-                            echo $row['wtPDB'];
-                            echo "</td><td>";
-                            echo $row['mutPDB'];
-                            echo "</td><td>";
-                            echo $row['CDR'];
-                            echo "</td><td>";
-                            echo $row['wtCDRseq'];
-                            echo "</td><td>";
-                            echo $row['Chain'];
-                            echo "</td><td>";
-                            echo $row['PMID'];
-                            echo "</td><td>";
-                            echo $row['ExpMethod'];
-                            echo "</td></tr>";
-                        }
-                        ?>
-                    </tbody>
-                </table>
-            <?php
-            }   
+            }
             ?>
+            <br><br>
+            <table border = '1px'>
+                <thead>
+                    <tr>
+                        <th colspan='<?php echo $col_count; ?>'> Results </th>
+                    </tr>
+                    <tr>
+                    <?php
+                    for ($i=0; $i<$col_count; $i++) {
+                        ?> <th> <?php echo $_POST['opts'][$i]; ?> </th>
+                    <?php } ?>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    while ($row = mysqli_fetch_array($result)) {
+                        echo "<tr>";
+                        for ($i=0; $i<$col_count; $i++) {
+                            echo "<td>";
+                            echo $row[$_POST['opts'][$i]];
+                            echo "</td>"; 
+                        }
+                        echo "</tr>";
+                    }
+                    ?>
+                </tbody>
+
+            </table>
+
         </div>      
    </body>
 </html>
