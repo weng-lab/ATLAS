@@ -37,7 +37,7 @@
                     $TCR_id = $_POST['TCR'];
                     if ($TCR_id == 'all') {
                         $query = "SELECT " . $query_columns . 
-                        " FROM Mutants";
+                        " FROM Mutants;";
                         
                     }
                     else {
@@ -56,9 +56,25 @@
                     </tr>
                     <tr>
                     <?php
-                    for ($i=0; $i<$col_count; $i++) {
-                        ?> <th> <?php echo $_POST['opts'][$i]; ?> </th>
-                    <?php } ?>
+                    if (isset($_POST['disp_all'])) {
+                        $query = "SHOW COLUMNS FROM Mutants";
+                        $col_result=mysqli_query($link, $query) or die(mysqli_error($link));
+                        $i = 0;
+                        while($row=mysqli_fetch_array($col_result)) {
+                            $display_opts[$i] = $row['Field'];
+                            $i++;
+                        }
+                        for ($i=0; $i<$col_count; $i++) {
+                            ?> <th> <?php echo $display_opts[$i]; ?> </th>
+                        <?php }
+                        $columns = $display_opts;
+                    }
+                    else if (isset($_POST['opts'])) {
+                        for ($i=0; $i<$col_count; $i++) {
+                            ?> <th> <?php echo $_POST['opts'][$i]; ?> </th>
+                        <?php }
+                        $columns = $_POST['opts'];
+                    } ?>
                     </tr>
                 </thead>
                 <tbody>
@@ -67,7 +83,7 @@
                         echo "<tr>";
                         for ($i=0; $i<$col_count; $i++) {
                             echo "<td>";
-                            echo $row[$_POST['opts'][$i]];
+                            echo $row[$columns[$i]];
                             echo "</td>"; 
                         }
                         echo "</tr>";
