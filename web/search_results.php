@@ -24,6 +24,8 @@
             <?php  
             $link = database_connect();
             if(isset($_POST['SEL'])) {
+
+                // Get all parameters from display form
                 if (isset($_POST['disp_all'])) {
                     $query_columns = '*';
                     $col_count = 33;
@@ -33,19 +35,60 @@
                     $col_count = count($_POST['opts']);
                 }
 
+                // Get all parameters from search form
+                $search_params = array();
                 if (isset($_POST['TCR'])) {
-                    $TCR_id = $_POST['TCR'];
-                    if ($TCR_id == 'all') {
-                        $query = "SELECT " . $query_columns . 
-                        " FROM Mutants;";
-                        
-                    }
-                    else {
-                        $query = "SELECT " . $query_columns . 
-                        " FROM Mutants WHERE TCRname = '" . $TCR_id . "';";
+                    if ($_POST['TCR'] != 'all') {
+                        $search_params[] = "(TCRname = '" . $_POST['TCR'] . "')";
                     }           
                 }
-                $result=mysqli_query($link, $query) or die(mysqli_error());
+                if (isset($_POST['TRAV'])) {
+                    if ($_POST['TRAV'] != 'all') {                    
+                        $query = "SELECT TCRname FROM TCRs WHERE TRAV='" . $_POST['TRAV'] . "';";
+                        $TRAV_result = mysqli_query($link, $query) or die(mysqli_error());
+                        $i=0;
+                        while($row = mysqli_fetch_array($TRAV_result)) {
+                            $TRAVtcrs[$i] = $row['TCRname'];
+                            $i++;
+                        }
+                          $or_string = '';
+                          for ($i = 0; $i < count($TRAVtcrs); $i++) {
+                            $or_string .= "TCRname = '" . $TRAVtcrs[$i] . "'";
+                            if ($i < count($TRAVtcrs)-1) {
+                                $or_string.= " OR ";
+                            }
+                        }
+                        $search_params[] = "(" . $or_string . ")";
+                    }           
+                }
+                if (isset($_POST['TRBV'])) {
+                    if ($_POST['TRBV'] != 'all') {
+                        $query = "SELECT TCRname FROM TCRs WHERE TRBV='" . $_POST['TRBV'] . "';";
+                        $TRBV_result = mysqli_query($link, $query) or die(mysqli_error());
+                        $i=0;
+                        while($row = mysqli_fetch_array($TRBV_result)) {
+                            $TRBVtcrs[$i] = $row['TCRname'];
+                            $i++;
+                        }
+                          $or_string = '';
+                          for ($i = 0; $i < count($TRBVtcrs); $i++) {
+                            $or_string .= "TCRname = '" . $TRBVtcrs[$i] . "'";
+                            if ($i < count($TRBVtcrs)-1) {
+                                $or_string.= " OR ";
+                            }
+                        }
+                        $search_params[] = "(" . $or_string . ")";
+                    }           
+                }
+                $where_query = join(' AND ', $search_params);
+                if (empty($search_params)) {
+                    $query = "SELECT {$query_columns} FROM Mutants;";
+                    
+                }
+                else {
+                    $query = "SELECT {$query_columns} FROM Mutants WHERE {$where_query};";
+                }
+                $result=mysqli_query($link, $query) or die(mysqli_error());   
             }
             ?>
             <br><br>
@@ -54,8 +97,8 @@
                     <tr>
                         <th colspan='<?php echo $col_count; ?>'> Results </th>
                     </tr>
-                    <tr>
-                    <?php
+                    <tr
+>                    <?php
                     if (isset($_POST['disp_all'])) {
                         $query = "SHOW COLUMNS FROM Mutants";
                         $col_result=mysqli_query($link, $query) or die(mysqli_error($link));

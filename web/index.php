@@ -54,62 +54,64 @@
                         </option>
                         <?php
                     }
-                ?></select>
+                ?>
+                </select><br><br>
                 
                 
                 <?php
                 //Select TRAV
-                // $query="SELECT TRAV from TCRs";
-                // $result=mysqli_query($link, $query) or die(mysqli_error());
-                // $i = 0;
-                // while($row=mysqli_fetch_array($result)) {
-                //     $TRAVnames[$i]= $row['TRAV'];
-                //     $i++;
-                // }
-                // $TRAVnames = array_values(array_unique($TRAVnames));
+                $query="SELECT TRAV from TCRs";
+                $result=mysqli_query($link, $query) or die(mysqli_error());
+                $i = 0;
+                while($row=mysqli_fetch_array($result)) {
+                    $TRAVnames[$i]= $row['TRAV'];
+                    $i++;
+                }
+                $TRAVnames = array_values(array_unique($TRAVnames));
                 ?>
-                <!-- TRAV:
-                <select name="TRAV"> -->
+                TRAV:
+                <select name="TRAV">
+                <option>all</option>
                 <?php
-                    // for($j=0; $j<count($TRAVnames); $j++) {
+                    for($j=0; $j<count($TRAVnames); $j++) {
                         ?>
-                        <!-- <option> -->
+                        <option>
                         <?php
-                        // echo $TRAVnames[$j];
+                        echo $TRAVnames[$j];
                         ?>
-                        <!-- </option> -->
+                        </option>
                         <?php
-                    // }
+                    }
                 ?>
-               <!--  </select>
-                <input type="submit" name="TRAVsel" value="Search"><br><br>
- -->
+                </select><br><br>
+
                 <?php
                 //Select TRBV
-                // $query="SELECT TRBV from TCRs";
-                // $result=mysqli_query($link, $query) or die(mysqli_error());
-                // $i = 0;
-                // while($row=mysqli_fetch_array($result)) {
-                //     $TRBVnames[$i]= $row['TRBV'];
-                //     $i++;
-                // }
-                // $TRBVnames = array_values(array_unique($TRBVnames));
+                $query="SELECT TRBV from TCRs";
+                $result=mysqli_query($link, $query) or die(mysqli_error());
+                $i = 0;
+                while($row=mysqli_fetch_array($result)) {
+                    $TRBVnames[$i]= $row['TRBV'];
+                    $i++;
+                }
+                $TRBVnames = array_values(array_unique($TRBVnames));
                 ?>
-                <!-- TRBV:
-                <select name="TRBV"> -->
+                TRBV:
+                <select name="TRBV">
+                <option>all</option>
                 <?php
-                    // for($j=0; $j<count($TRBVnames); $j++) {
+                    for($j=0; $j<count($TRBVnames); $j++) {
                         ?>
-                       <!--  <option> -->
+                        <option>
                         <?php
-                        // echo $TRBVnames[$j];
+                        echo $TRBVnames[$j];
                         ?>
-                        <!-- </option> -->
+                        </option>
                         <?php
-                    // }
+                    }
                 ?>
-               <!--  </select>
-                <input type="submit" name="TRBVsel" value="Search"><br><br> --> 
+                </select>
+                
             </div>
             <br><br>
             <div class="display">
