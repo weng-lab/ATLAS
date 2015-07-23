@@ -32,8 +32,9 @@
                 <?php $link = database_connect(); ?>
                 <h2> Search</h2><br><br>
                
+                
+                <!-- Select TCR -->
                 <?php
-                // Select TCR
                 $query="SELECT * FROM TCRs";
                 $result=mysqli_query($link, $query) or die(mysqli_error($link));
                 $i = 0;
@@ -44,23 +45,24 @@
                 ?>
                 TCR: 
                 <select name="TCR">
-                <option>all</option>
-                <?php
-                    for($j=0;$j<count($TCRnames);$j++) {
-                        ?>
-                        <option>
-                        <?php 
-                        echo $TCRnames[$j];
-                        ?>
-                        </option>
-                        <?php
-                    }
-                ?>
+                    <option>all</option>
+                    <?php
+                        for($j=0;$j<count($TCRnames);$j++) {
+                            ?>
+                            <option>
+                            <?php 
+                            echo $TCRnames[$j];
+                            ?>
+                            </option>
+                            <?php
+                        }
+                    ?>
                 </select><br><br>
                 
                 
+                
+                <!-- Select TRAV -->
                 <?php
-                // Select TRAV
                 $query="SELECT TRAV from TCRs";
                 $result=mysqli_query($link, $query) or die(mysqli_error());
                 $i = 0;
@@ -72,22 +74,23 @@
                 ?>
                 TRAV:
                 <select name="TRAV">
-                <option>all</option>
-                <?php
-                    for($j=0; $j<count($TRAVnames); $j++) {
-                        ?>
-                        <option>
-                        <?php
-                        echo $TRAVnames[$j];
-                        ?>
-                        </option>
-                        <?php
-                    }
-                ?>
-                </select><br><br>
+                    <option>all</option>
+                    <?php
+                        for($j=0; $j<count($TRAVnames); $j++) {
+                            ?>
+                            <option>
+                            <?php
+                            echo $TRAVnames[$j];
+                            ?>
+                            </option>
+                            <?php
+                        }
+                    ?>
+                    </select><br><br>
 
+                
+                <!-- Select TRBV -->
                 <?php
-                //Select TRBV
                 $query="SELECT TRBV from TCRs";
                 $result=mysqli_query($link, $query) or die(mysqli_error());
                 $i = 0;
@@ -99,19 +102,29 @@
                 ?>
                 TRBV:
                 <select name="TRBV">
-                <option>all</option>
-                <?php
-                    for($j=0; $j<count($TRBVnames); $j++) {
-                        ?>
-                        <option>
-                        <?php
-                        echo $TRBVnames[$j];
-                        ?>
-                        </option>
-                        <?php
-                    }
-                ?>
-                </select>
+                    <option>all</option>
+                    <?php
+                        for($j=0; $j<count($TRBVnames); $j++) {
+                            ?>
+                            <option>
+                            <?php
+                            echo $TRBVnames[$j];
+                            ?>
+                            </option>
+                            <?php
+                        }
+                    ?>
+                </select><br><br>
+
+                <!-- Select MHC class -->
+                MHC class:
+                <select name="MHCclass">
+                    <option>all</option>
+                    <option>I</option>
+                    <option>II</option>
+                </select><br><br>
+
+
                 
             </div>
             <div class="display">

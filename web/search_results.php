@@ -51,8 +51,8 @@
                             $TRAVtcrs[$i] = $row['TCRname'];
                             $i++;
                         }
-                          $or_string = '';
-                          for ($i = 0; $i < count($TRAVtcrs); $i++) {
+                        $or_string = '';
+                        for ($i = 0; $i < count($TRAVtcrs); $i++) {
                             $or_string .= "TCRname = '" . $TRAVtcrs[$i] . "'";
                             if ($i < count($TRAVtcrs)-1) {
                                 $or_string.= " OR ";
@@ -70,8 +70,8 @@
                             $TRBVtcrs[$i] = $row['TCRname'];
                             $i++;
                         }
-                          $or_string = '';
-                          for ($i = 0; $i < count($TRBVtcrs); $i++) {
+                        $or_string = '';
+                        for ($i = 0; $i < count($TRBVtcrs); $i++) {
                             $or_string .= "TCRname = '" . $TRBVtcrs[$i] . "'";
                             if ($i < count($TRBVtcrs)-1) {
                                 $or_string.= " OR ";
@@ -80,6 +80,28 @@
                         $search_params[] = "(" . $or_string . ")";
                     }           
                 }
+
+                if (isset($_POST['MHCclass'])) {
+                    if ($_POST['MHCclass'] != 'all') {
+                        $query = "SELECT MHCname FROM MHCs WHERE class='" . $_POST['MHCclass'] . "';";
+                        $MHCclass_result = mysqli_query($link, $query) or die(mysqli_error());
+                        $i=0;
+                        while($row = mysqli_fetch_array($MHCclass_result)) {
+                            $class_mhcs[$i] = $row['MHCname'];
+                            $i++;
+                        }
+                        $or_string = '';
+                        for ($i = 0; $i < count($class_mhcs); $i++) {
+                            $or_string .= "(MHCname LIKE '%" . $class_mhcs[$i] . 
+                                    "%' OR MHCname_PDB LIKE '%" . $class_mhcs[$i] . "%')";
+                            if ($i < count($class_mhcs)-1) {
+                                $or_string.= " OR ";
+                            }
+                        }
+                        $search_params[] = "(" . $or_string . ")";
+                    }           
+                }
+
                 $where_query = join(' AND ', $search_params);
                 if (empty($search_params)) {
                     $query = "SELECT {$query_columns} FROM Mutants;";
