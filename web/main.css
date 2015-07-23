@@ -20,11 +20,14 @@ img.logo {
 .search {
 	background-color:#A0A1A9;
 	width:20em;
-	height:20em;
+	height:26em;
   border: 5px solid #8F8F8F;
   font-family: 'Arial';
   font-size: 12px;
+  float: left;
+  margin-right: 2em;
 }
+
 .display {
   background-color:#A0A1A9;
   width:60em;
@@ -32,10 +35,17 @@ img.logo {
   border: 5px solid #8F8F8F;
   font-family: 'Arial';
   font-size: 12px;
-
-
-
+  display: inline-block;
+  
 }
+
+
+.checkbox-grid li {
+  display: block;
+  float: left;
+  width: 33%;
+}
+
 
 .nav ul {
       text-align: center;
@@ -84,4 +94,5 @@ p {
 h2 {
   font-family: 'Arial';
   font-size: 18px;
+  display:inline;
 }

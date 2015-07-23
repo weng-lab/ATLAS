@@ -26,11 +26,12 @@
             <h2> Welcome to the ATLAS Database </h2>
             <p> ATLAS (Altered TCR Ligand Affinities and Structures) is a database containing wild type and mutant binding affinities for all TCRs for which TCR-pMHC structures are available. It is available for training and evalutaing next generation TCR-pMHC scoring functions.</p>    
         </div>
+        
         <form action="search_results.php" method="POST">
             <div class="search">
-                <h2> Search</h2>
                 <?php $link = database_connect(); ?>
-            
+                <h2> Search</h2><br><br>
+               
                 <?php
                 // Select TCR
                 $query="SELECT * FROM TCRs";
@@ -59,7 +60,7 @@
                 
                 
                 <?php
-                //Select TRAV
+                // Select TRAV
                 $query="SELECT TRAV from TCRs";
                 $result=mysqli_query($link, $query) or die(mysqli_error());
                 $i = 0;
@@ -113,7 +114,6 @@
                 </select>
                 
             </div>
-            <br><br>
             <div class="display">
                 <h2> Display</h2>
                 <?php 
@@ -125,19 +125,18 @@
                     $i++;
                 }
                 ?>
-                <input type="checkbox" name="disp_all" checked> all <br><br>
-                <?php
-                for ($j=0; $j<count($display_opts); $j++) {
+                <ul class="checkbox-grid">
+                    <li><input type="checkbox" name="disp_all" checked> all </li><br><br>
+                    <?php
+                    for ($j=0; $j<count($display_opts); $j++) {
+                        ?>
+                        <li><input type="checkbox" name="opts[]" value="<?php echo $display_opts[$j]; ?>">
+                        <?php echo $display_opts[$j];?> </li>
+                    <?php }
                     ?>
-                    <input type="checkbox" name="opts[]" value="<?php echo $display_opts[$j]; ?>">
-                    <?php echo $display_opts[$j];
-                    if (($j+1) % 5 == 0) {
-                       ?> <br><br> <?php
-                    }
-                }
-                ?>
-             </div>
-             <br><br>
+                </ul>
+            </div>
+            <br><br>
             <input type="submit" name="SEL" value="Search"><br><br>
         </form>   
 	</body>
