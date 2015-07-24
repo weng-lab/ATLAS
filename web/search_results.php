@@ -102,6 +102,18 @@
                     }           
                 }
 
+                if (isset($_POST['MHCname'])) {
+                    if ($_POST['MHCname'] != 'all') {
+                        $search_params[] = "(MHCname LIKE '%" . $_POST['MHCname'] .
+                            "%' OR MHCname_PDB LIKE '%" . $_POST['MHCname'] . "%')";
+                    }
+                }
+
+                if (isset($_POST['dG'])) {
+                    $search_params[] = "(DeltaG_kcal_per_mol < '" . $_POST['dG'] . "')";
+                }
+
+
                 $where_query = join(' AND ', $search_params);
                 if (empty($search_params)) {
                     $query = "SELECT {$query_columns} FROM Mutants;";

@@ -124,6 +124,40 @@
                     <option>II</option>
                 </select><br><br>
 
+                <!-- Select HLA allele -->
+                <?php
+                $query="SELECT MHCname from MHCs";
+                $result=mysqli_query($link, $query) or die(mysqli_error());
+                $i = 0;
+                while($row=mysqli_fetch_array($result)) {
+                    $MHCnames[$i]= $row['MHCname'];
+                    $i++;
+                }
+                ?>
+                MHC allele:
+                <select name="MHCname">
+                    <option>all</option>
+                    <?php
+                        for($j=0; $j<count($MHCnames); $j++) {
+                            ?>
+                            <option>
+                            <?php
+                            echo $MHCnames[$j];
+                            ?>
+                            </option>
+                            <?php
+                        }
+                    ?>
+                </select><br><br>
+
+                <!--Select dG range -->
+                &#916G <
+                <input type="text" name="dG" value="0.00">
+                </select><br><br>
+
+
+
+
 
                 
             </div>
