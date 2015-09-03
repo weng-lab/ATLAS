@@ -22,7 +22,7 @@ def score(pdb, label):
 	'''
 	score_cmd = [args.ros_path + 'rosetta_source/bin/score.linuxgccrelease', '-database',
 	args.ros_path + 'rosetta_database/', '-s', pdb , '-out:file:scorefile', 
-	label + '_score.sc']
+	label + '_score.sc', '-extrachi_cutoff', '1', '-ex1', '-ex2', '-ex3']
 	process = subprocess.Popen(score_cmd)
 	process.wait()
 	
