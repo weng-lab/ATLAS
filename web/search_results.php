@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
-        <link href="../../../bootstrap/bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../bootstrap/bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="my_css.css" rel="stylesheet"/>
         <title>ATLAS: Database of TCR-pMHC affinities and structures</title>    
     </head>
