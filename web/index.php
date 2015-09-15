@@ -27,13 +27,13 @@
 			           	<li><a  href="downloads.php">Downloads</a></li>
                 		<li><a  href="references.html">References</a></li>
                 		<li><a href="contact.html">Contact</a></li>
-	              		</li>
 	            	</ul>
 	          	</div>
 	        </div>
         </nav>
         <div class="container">
         	<img class="my_logo" src="atlas_logo_v1.png" />
+        	<br></br>
     		<div class = "well">
     			<p> ATLAS (Altered TCR Ligand Affinities and Structures) is a database containing wild type and mutant binding affinities for all TCRs for which TCR-pMHC structures are available. It is available for training and evalutaing next generation TCR-pMHC scoring functions.</p>
     		</div>

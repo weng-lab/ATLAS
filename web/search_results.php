@@ -27,13 +27,13 @@
                         <li><a  href="downloads.php">Downloads</a></li>
                         <li><a  href="references.html">References</a></li>
                         <li><a href="contact.html">Contact</a></li>
-                        </li>
                     </ul>
                 </div>
             </div>
         </nav>
         <div class="container">
             <img class="my_logo" src="atlas_logo_v1.png" />
+            <br></br>
         </div>
         <?php  
         $link = database_connect();
