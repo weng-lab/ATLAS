@@ -122,6 +122,11 @@
             if (isset($_POST['dG'])) {
                 $search_params[] = "(DeltaG_kcal_per_mol < '" . $_POST['dG'] . "')";
             }
+            if (isset($_POST['peptide'])) {
+                if ($_POST['peptide'] != 'all') {
+                    $search_params[] = "(PEPseq LIKE '%" . $_POST['peptide'] . "%')";
+                }
+            }
 
             $where_query = join(' AND ', $search_params);
             if (empty($search_params)) {

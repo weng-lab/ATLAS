@@ -43,7 +43,7 @@
     	<div class="container">
     		<form action="search_results.php" method="POST" role="form">
 	    		<div class ="row">
-	    			<div class="col-sm-4">
+	    			<div class="col-sm-3">
 	    				<div class="panel panel-default">
 	    					<div class="panel-heading">
 	    						<h3 class="panel-title">TCR </h3>
@@ -135,7 +135,7 @@
 				            </div>
 				        </div>
 		            </div>
-	    			<div class="col-sm-4">
+	    			<div class="col-sm-3">
 	    				<div class="panel panel-default">
 	    					<div class="panel-heading">
 	    						<h3 class="panel-title"> MHC </h3>
@@ -180,7 +180,7 @@
 					        </div>
 					    </div>
 					</div>
-					<div class="col-sm-4">
+					<div class="col-sm-3">
 	    				<div class="panel panel-default">
 	    					<div class="panel-heading">
 	    						<h3 class="panel-title"> Energy </h3>
@@ -194,15 +194,25 @@
 					        </div>
 					    </div>
 					</div>
+					<div class="col-sm-3">
+	    				<div class="panel panel-default">
+	    					<div class="panel-heading">
+	    						<h3 class="panel-title"> Peptide </h3>
+	    					</div>
+	    					<div class="panel-body">
+				    			<div class="form-group">
+				    				<!--Select Peptide sequence -->
+				    				<label for="peptide" > Peptide Sequence: </label>
+					                <input type="text" class="form-control" name="peptide" value="all">
+					            </div>
+					        </div>
+					    </div>
+					</div>
 				</div>
 
         		<input type="submit" name="SEL" class="btn btn-default" value="Search"><br><br>
         	</form> 
         </div>  
-
-
-
-
 
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
