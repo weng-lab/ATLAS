@@ -36,14 +36,12 @@ $(document).ready(function() {
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
                     </button>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="./">Home</a></li>
                         <li><a  href="downloads.php">Downloads</a></li>
-                        <li><a  href="references.html">References</a></li>
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
