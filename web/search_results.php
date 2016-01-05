@@ -1,5 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.10/css/dataTables.bootstrap.min.css">
+<script type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1.11.3.min.js"></script> 
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.10/js/dataTables.bootstrap.min.js"></script>
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/plug-ins/1.10.10/sorting/num-html.js"></script>
+
+<script type="text/javascript" class="init">
+    
+$(document).ready(function() {
+    $('#result_table').DataTable( {
+        searching: false,
+        "columnDefs": [
+                // fix sorting of Kd column
+                { "type": "num-html", targets: 8 }
+            ]
+        });
+} );
+</script>
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -143,7 +161,7 @@
             }
             ?>
             <div class="container">
-                <table class= "table table-bordered table-striped">
+                <table id= "result_table" class= "table table-bordered table-striped">
                     <thead>
                         <tr>
                             <th>TCR name</th>
@@ -203,7 +221,7 @@
 
 
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="../../../bootstrap/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>      
    
