@@ -198,6 +198,9 @@ $(document).ready(function() {
                                     </span>
                                     <?php
                                 }
+                                elseif ($query_columns[$i] == "PMID") {
+                                    echo '<a href="http://www.ncbi.nlm.nih.gov/pubmed/' . $row[$query_columns[$i]] . '">'. $row[$query_columns[$i]] . '</a>';
+                                }
                                 else {
                                     echo $row[$query_columns[$i]];
                                 }
