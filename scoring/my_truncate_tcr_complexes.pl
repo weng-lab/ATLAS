@@ -13,15 +13,35 @@ use strict;
 # Ex.
 # ./my_truncate_tcr_complexes 1AO7 DHC AB
 
+
 my $pdb = $ARGV[0];
 my $pmhc_chains = $ARGV[1];
 my $tcr_chains = $ARGV[2];
+my %chain_hash;
 
 if (($pdb eq "") || ($pmhc_chains eq "") || ($tcr_chains eq ""))
 	{ die("usage: my_truncate_tcr_complexes.pl [PDB] [pmhc_chains] [tcr_chains]\n"); }
 
 my $classII = 0;
 if (length($pmhc_chains) == 3) { $classII = 1; }
+
+if ($classII == 1) {
+    %chain_hash = (
+        substr($pmhc_chains, 0,1) => "A",
+        substr($pmhc_chains, 1,1) => "B",
+        substr($pmhc_chains, 2,1) => "C",
+        substr($tcr_chains, 0,1) => "D",
+        substr($tcr_chains, 1,1) => "E",
+    );
+
+} else {
+    %chain_hash = (
+        substr($pmhc_chains, 0,1) => "A",
+        substr($pmhc_chains, 1,1) => "C",
+        substr($tcr_chains, 0,1) => "D",
+        substr($tcr_chains, 1,1) => "E",
+    );
+}
 
 # get the mhc and peptide
 open(PDB, "$pdb.pdb") || die("unable to open pdb file: $pdb.pdb\n");
@@ -151,6 +171,53 @@ if ($line =~ /[A-Z]{3} [A-Z]  [A-Z] [A-Z]{3}/)
     elsif ($res1 eq " 118 ") { $past_last_beta_res = $res2; }
 }
 }
+
+# Get the helix lines
+my @helix_lines = ();
+foreach my $line (@pdb_lines) {
+    if (substr($line, 0, 5) eq "HELIX") {
+        my $line2 = $line;
+        my $orig_chain1 = substr($line, 19, 1);
+        if ($chain_hash{$orig_chain1}) {
+            substr($line2, 19, 1) = $chain_hash{$orig_chain1};
+        }
+        my $orig_chain2 = substr($line, 31, 1);
+        if ($chain_hash{$orig_chain2}) {
+            substr($line2, 31, 1) = $chain_hash{$orig_chain2};
+        }
+        push @helix_lines, $line2;
+    }
+}
+
+# Get the sheet lines
+my @sheet_lines = ();
+foreach my $line (@pdb_lines) {
+    if (substr($line, 0, 5) eq "SHEET") {
+        my $line2 = $line;
+        my $orig_chain1 = substr($line, 21, 1);
+        if ($chain_hash{$orig_chain1}) {
+            substr($line2, 21, 1) = $chain_hash{$orig_chain1};
+        }
+        my $orig_chain2 = substr($line, 32, 1);
+        if ($chain_hash{$orig_chain2}) {
+            substr($line2, 32, 1) = $chain_hash{$orig_chain2};
+        }
+        my $orig_chain3 = substr($line, 49, 1);
+        if ($chain_hash{$orig_chain3}) {
+            substr($line2, 49, 1) = $chain_hash{$orig_chain3};
+        }
+        my $orig_chain4 = substr($line, 64, 1);
+        if ($chain_hash{$orig_chain4}) {
+            substr($line2, 64, 1) = $chain_hash{$orig_chain4};
+        }
+        push @sheet_lines, $line2;
+    }
+}
+
+# print helix and sheet lines
+foreach my $line (@helix_lines) { print PDBOUT $line;}
+foreach my $line (@sheet_lines) { print PDBOUT $line;}
+
 
 # print out all the lines
 foreach my $line (@mhc_lines) { print PDBOUT $line; }
