@@ -63,6 +63,8 @@ $(document).ready(function() {
                 $query_columns_str = join(', ', $query_columns);
                 $col_count = 13;
 
+                // Open tab delimited file to download search results
+                $results_FH = fopen("tables/search_results.tab", "w");
 
                 // Get all parameters from search form
                 $search_params = array();
@@ -176,6 +178,9 @@ $(document).ready(function() {
                             <th>Template PDB</th>
                             <th>PMID</th>
                         </tr>
+                        <?php //Write header to tab file
+                        $header_tab_str = 
+                        fwrite($results_FH, join("\t", $query_columns) . "\n"); ?>
                     </thead>
                     <tbody>
                         <?php
@@ -183,6 +188,11 @@ $(document).ready(function() {
                             echo "<tr>";
                             for ($i=0; $i<$col_count; $i++) {
                                 echo "<td>";
+                                if ($row[$query_columns[$i]] == "PMID") { 
+                                    fwrite($results_FH, $row[$query_columns[$i]]);
+                                } else {
+                                    fwrite($results_FH, $row[$query_columns[$i]] . "\t");
+                                }
                                 if ($query_columns[$i] == "MHCname") {
                                     ?>
                                     <span style="white-space: nowrap;"> 
@@ -207,12 +217,20 @@ $(document).ready(function() {
                                 }
                                 echo "</td>"; 
                             }
+                            fwrite($results_FH, "\n");
                             echo "</tr>";
                         }
                         ?>
                     </tbody>
                 </table>
+                <?php fclose($results_FH); ?>
             </div>
+            <div class= "container">
+                <a href="tables/search_results.tab"  class="btn btn-primary" download>
+                <span class="glyphicon glyphicon-download"></span> Download Results
+                </a>
+            </div>
+            <br><br>
         <?php
         }
         else {
