@@ -212,6 +212,22 @@ $(document).ready(function() {
                                 elseif ($query_columns[$i] == "true_PDB") {
                                     echo '<a href="3D_viewer.php?pdb=' . $row[$query_columns[$i]] . '">'. $row[$query_columns[$i]] . '</a>';
                                 }
+                                elseif ($query_columns[$i] == "template_PDB") {
+                                    if ($row['MHC_mut_chain'] == "") {
+                                        $tpdb_mhc_chain ="nan";
+                                    } else {
+                                        $tpdb_mhc_chain = $row['MHC_mut_chain'];
+                                    }
+                                    if ($row['TCR_mut_chain'] == "") {
+                                        $tpdb_tcr_chain ="nan";
+                                    } else {
+                                        $tpdb_tcr_chain = $row['TCR_mut_chain'];
+                                    }
+
+                                    echo '<a href="3D_viewer_designed.php?pdb=' . $row[$query_columns[$i]] . '&mhc_mut='. $row['MHC_mut'] 
+                                    . '&mhc_chain='. $tpdb_mhc_chain . '&tcr_mut='. $row['TCR_mut'] . '&tcr_chain='. $tpdb_tcr_chain 
+                                    . '&pep_mut=' . $row['PEP_mut'] . '">'. $row[$query_columns[$i]] . '</a>';
+                                }
                                 else {
                                     echo $row[$query_columns[$i]];
                                 }

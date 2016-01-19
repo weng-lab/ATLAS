@@ -60,7 +60,15 @@
 
     <script type='text/javascript'>
     function loadPDB() {
-        var pdbfile = "../structures/true_pdb/" + "<?php echo $_GET['pdb']; ?>" + ".pdb";
+        var pdbfile = "../structures/designed_pdb/" + 
+        "<?php echo $_GET['pdb'];?>" + "_" +
+        "<?php echo $_GET['mhc_mut'];?>" + "_" +
+        "<?php echo $_GET['mhc_chain'];?>" + "_" +
+        "<?php echo $_GET['tcr_mut'];?>" + "_" +
+        "<?php echo $_GET['tcr_chain'];?>" + "_" +
+        "<?php echo $_GET['pep_mut'];?>" +
+        ".pdb";
+
         pv.io.fetchPdb(pdbfile, function(structure) {
             var geom = viewer.cartoon('protein', structure);
             viewer.centerOn(structure);
