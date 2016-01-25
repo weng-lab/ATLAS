@@ -11,6 +11,7 @@
 $(document).ready(function() {
     $('#result_table').DataTable( {
         searching: false,
+        processin: true,
         "columnDefs": [
                 // fix sorting of Kd column
                 { "type": "num-html", targets: 8 }
@@ -62,9 +63,6 @@ $(document).ready(function() {
                 $query_columns = array("TCRname", "TCR_mut", "TCR_mut_chain", "MHCname", "MHC_mut", "MHC_mut_chain", "PEPseq", "PEP_mut", "Kd_microM", "DeltaG_kcal_per_mol", "true_PDB", "template_PDB", "PMID"); 
                 $query_columns_str = join(', ', $query_columns);
                 $col_count = 13;
-
-                // Open tab delimited file to download search results
-                $results_FH = fopen("tables/search_results.tab", "w");
 
                 // Get all parameters from search form
                 $search_params = array();
@@ -178,9 +176,9 @@ $(document).ready(function() {
                             <th>Template PDB</th>
                             <th>PMID</th>
                         </tr>
-                        <?php //Write header to tab file
-                        $header_tab_str = 
-                        fwrite($results_FH, join("\t", $query_columns) . "\n"); ?>
+                        <?php 
+                        // Write results to string for download
+                        $download_results = join("\t", $query_columns) . "\n"; ?>
                     </thead>
                     <tbody>
                         <?php
@@ -189,9 +187,9 @@ $(document).ready(function() {
                             for ($i=0; $i<$col_count; $i++) {
                                 echo "<td>";
                                 if ($row[$query_columns[$i]] == "PMID") { 
-                                    fwrite($results_FH, $row[$query_columns[$i]]);
+                                    $download_results .= $row[$query_columns[$i]];
                                 } else {
-                                    fwrite($results_FH, $row[$query_columns[$i]] . "\t");
+                                    $download_results .= $row[$query_columns[$i]] . "\t";
                                 }
                                 if ($query_columns[$i] == "MHCname") {
                                     ?>
@@ -216,35 +214,45 @@ $(document).ready(function() {
                                     if ($row['MHC_mut_chain'] == "") {
                                         $tpdb_mhc_chain ="nan";
                                     } else {
-                                        $tpdb_mhc_chain = $row['MHC_mut_chain'];
+                                        $tpdb_mhc_chain = preg_replace('/\s+/', '', $row['MHC_mut_chain']);
                                     }
                                     if ($row['TCR_mut_chain'] == "") {
                                         $tpdb_tcr_chain ="nan";
                                     } else {
-                                        $tpdb_tcr_chain = $row['TCR_mut_chain'];
+                                        $tpdb_tcr_chain = preg_replace('/\s+/', '', $row['TCR_mut_chain']); 
                                     }
+                                    $tpdb_pdb = preg_replace('/\s+/', '', $row[$query_columns[$i]]);
+                                    $tpdb_mhc = preg_replace('/\s+/', '', $row['MHC_mut']);
+                                    $tpdb_tcr = preg_replace('/\s+/', '', $row['TCR_mut']);
+                                    $tpdb_pep = preg_replace('/\s+/', '', $row['PEP_mut']);
 
-                                    echo '<a href="3D_viewer_designed.php?pdb=' . $row[$query_columns[$i]] . '&mhc_mut='. $row['MHC_mut'] 
-                                    . '&mhc_chain='. $tpdb_mhc_chain . '&tcr_mut='. $row['TCR_mut'] . '&tcr_chain='. $tpdb_tcr_chain 
-                                    . '&pep_mut=' . $row['PEP_mut'] . '">'. $row[$query_columns[$i]] . '</a>';
+                                    echo '<a href="3D_viewer_designed.php?pdb=' . $tpdb_pdb . '&mhc_mut='. $tpdb_mhc 
+                                    . '&mhc_chain='. $tpdb_mhc_chain . '&tcr_mut='. $tpdb_tcr . '&tcr_chain='. $tpdb_tcr_chain 
+                                    . '&pep_mut=' . $tpdb_pep . '">'. $tpdb_pdb . '</a>';
+
                                 }
                                 else {
                                     echo $row[$query_columns[$i]];
                                 }
                                 echo "</td>"; 
                             }
-                            fwrite($results_FH, "\n");
+                            $download_results .= "\n";
                             echo "</tr>";
                         }
                         ?>
                     </tbody>
                 </table>
-                <?php fclose($results_FH); ?>
             </div>
             <div class= "container">
-                <a href="tables/search_results.tab"  class="btn btn-primary" download>
-                <span class="glyphicon glyphicon-download"></span> Download Results
-                </a>
+                <?php
+                echo '
+                <form action="tables/results_table.php" method="POST">
+                <input type="hidden" name="results" value="' . $download_results . '"> 
+                <button type="submit" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-download"></span> Download Results
+                </button>
+                </form>';
+                ?>
             </div>
             <br><br>
         <?php
