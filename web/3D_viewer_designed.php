@@ -59,7 +59,9 @@
     </script>
 
     <script type='text/javascript'>
+
     function loadPDB() {
+        
         var pdbfile = "../structures/designed_pdb/" + 
         "<?php echo $_GET['pdb'];?>" + "_" +
         "<?php echo $_GET['mhc_mut'];?>" + "_" +
@@ -78,5 +80,6 @@
     }
     document.addEventListener('DOMContentLoaded', loadPDB);
     </script>
+    <script> document.write(pdbfile) </script>
 
 </html>

@@ -215,16 +215,21 @@ $(document).ready(function() {
                                         $tpdb_mhc_chain ="nan";
                                     } else {
                                         $tpdb_mhc_chain = preg_replace('/\s+/', '', $row['MHC_mut_chain']);
+                                        $tpdb_mhc_chain = preg_replace('/\|/', '.', $tpdb_mhc_chain);
                                     }
                                     if ($row['TCR_mut_chain'] == "") {
                                         $tpdb_tcr_chain ="nan";
                                     } else {
                                         $tpdb_tcr_chain = preg_replace('/\s+/', '', $row['TCR_mut_chain']); 
+                                        $tpdb_tcr_chain = preg_replace('/\|/', '.', $tpdb_tcr_chain);
                                     }
                                     $tpdb_pdb = preg_replace('/\s+/', '', $row[$query_columns[$i]]);
                                     $tpdb_mhc = preg_replace('/\s+/', '', $row['MHC_mut']);
+                                    $tpdb_mhc = preg_replace('/\|/', '.', $tpdb_mhc);
                                     $tpdb_tcr = preg_replace('/\s+/', '', $row['TCR_mut']);
+                                    $tpdb_tcr = preg_replace('/\|/', '.', $tpdb_tcr);
                                     $tpdb_pep = preg_replace('/\s+/', '', $row['PEP_mut']);
+                                    $tpdb_pep = preg_replace('/\|/', '.', $tpdb_pep);
 
                                     echo '<a href="3D_viewer_designed.php?pdb=' . $tpdb_pdb . '&mhc_mut='. $tpdb_mhc 
                                     . '&mhc_chain='. $tpdb_mhc_chain . '&tcr_mut='. $tpdb_tcr . '&tcr_chain='. $tpdb_tcr_chain 
