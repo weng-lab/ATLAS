@@ -59,6 +59,7 @@
     </script>
 
     <script type='text/javascript'>
+    
 
     function loadPDB() {
         
@@ -71,11 +72,39 @@
         "<?php echo $_GET['pep_mut'];?>" +
         ".pdb";
 
+        var pep_mut = "<?php echo $_GET['pep_mut'];?>".split(".");
+        var mhc_mut = "<?php echo $_GET['mhc_mut'];?>".split(".");
+        var mhc_chain = "<?php echo $_GET['mhc_chain'];?>".split(".");
+        var tcr_mut = "<?php echo $_GET['tcr_mut'];?>".split(".");
+        var tcr_chain = "<?php echo $_GET['tcr_chain'];?>".split(".");
+
         pv.io.fetchPdb(pdbfile, function(structure) {
             var geom = viewer.cartoon('protein', structure);
             viewer.centerOn(structure);
             viewer.fitTo(structure);
             geom.colorBy(pv.color.byChain(pv.color.gradient(['lightcyan', 'darkblue'])));
+            // display peptide mutations
+            if (pep_mut[0] != "WT") {
+                for (i=0; i < pep_mut.length; i++) {
+                    // get res number
+                    var res_num = pep_mut[i].substring(1, pep_mut[i].length -1);
+                    var mutant = structure.select({cname:'C', rnum: parseInt(res_num)});
+                    viewer.ballsAndSticks('mutant', mutant);
+                    var carbonAlpha = structure.atom('C.' + res_num + '.CA');
+                    viewer.label('label', pep_mut[i], carbonAlpha.pos());
+                }
+            }
+            // display mhc mutations
+            for (i=0; i < mhc_mut.length; i++) {
+                // get res number and chain
+                res_num = mhc_mut[i].substring(1, mhc_mut[i].length -1);
+                var chain = mhc_chain[i];
+                var mutant = structure.select({cname:chain, rnum: parseInt(res_num)});
+                viewer.ballsAndSticks('mutant', mutant);
+                var carbonAlpha = structure.atom(chain + '.' + res_num + '.CA');
+                viewer.label('label', mhc_mut[i], carbonAlpha.pos());
+            }
+
         });
     }
     document.addEventListener('DOMContentLoaded', loadPDB);
