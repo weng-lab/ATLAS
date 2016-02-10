@@ -7,6 +7,7 @@
     	
     	<link href="../bootstrap/less/bootstrap.css" rel="stylesheet">
     	<link href="my_css.css" rel="stylesheet"/>
+        <script src="../../../bootstrap/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script> 
     	<title>ATLAS: Database of TCR-pMHC affinities and structures</title>	
     </head>
     <body>
@@ -39,36 +40,48 @@
                             <h3 class="panel-title">PV viewer </h3>
                         </div>
                         <div class="panel-body">
-                            <div id=viewer></div>
-                        </div> 
+                            <div id="viewer"></div>
+                            <script type='text/javascript' src='bio-pv.min.js'></script>
+
+                            <script type='text/javascript'>
+                            var options = {
+                            width: 525,
+                            height: 600,
+                            antialias: true,
+                            quality : 'medium'
+                            };
+                            var viewer = pv.Viewer(document.getElementById('viewer'), options);
+                            </script>
+
+                            <script type='text/javascript'>
+                            function loadPDB() {
+                                var pdbfile = "../structures/true_pdb/" + "<?php echo $_GET['pdb']; ?>" + ".pdb";
+                                pv.io.fetchPdb(pdbfile, function(structure) {
+                                    var geom = viewer.cartoon('protein', structure);
+                                    viewer.centerOn(structure);
+                                    viewer.fitTo(structure);
+                                    geom.colorBy(pv.color.byChain(pv.color.gradient(['lightcyan', 'darkblue'])));
+                                });
+                            }
+                            document.addEventListener('DOMContentLoaded', loadPDB);
+                            </script>
+                        </div>
                     </div>
                 </div>
-    <script src="../../../bootstrap/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>      
-   
-   </body>
-   <script type='text/javascript' src='bio-pv.min.js'></script>
-
-   <script type='text/javascript'>
-    var options = {
-    width: 525,
-    height: 600,
-    antialias: true,
-    quality : 'medium'
-    };
-    var viewer = pv.Viewer(document.getElementById('viewer'), options);
-    </script>
-
-    <script type='text/javascript'>
-    function loadPDB() {
-        var pdbfile = "../structures/true_pdb/" + "<?php echo $_GET['pdb']; ?>" + ".pdb";
-        pv.io.fetchPdb(pdbfile, function(structure) {
-            var geom = viewer.cartoon('protein', structure);
-            viewer.centerOn(structure);
-            viewer.fitTo(structure);
-            geom.colorBy(pv.color.byChain(pv.color.gradient(['lightcyan', 'darkblue'])));
-        });
-    }
-    document.addEventListener('DOMContentLoaded', loadPDB);
-    </script>
-
+                <div class="col-sm-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Download </h3>
+                        </div>
+                        <div class="panel-body">
+                            <p> PDB <?php echo $_GET['pdb'];?>:</p>
+                            <a href= <?php echo "../structures/true_pdb/" . $_GET['pdb'] .".pdb";?> class="btn btn-primary">
+                                <span class="glyphicon glyphicon-download"></span> PDB structure
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>
