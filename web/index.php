@@ -73,13 +73,49 @@
 	                            <h3 class="panel-title">Statistics </h3>
 	                        </div>
 	                        <div class="panel-body">
+	                        	<?php $link = database_connect(); ?>
 	                        	<ul class="list-group">
-	                        		<li class="list-group-item">Total entries: </li>
-	                        		<li class="list-group-item">Human: </li>
-	                        		<li class="list-group-item">Mouse: </li>
-	                        		<li class="list-group-item">Class I MHC alleles: </li>
-	                        		<li class="list-group-item">Class II MHC alleles: </li>
-	                        		<li class="list-group-item">PDB structures: </li>
+	                        		<li class="list-group-item">Total entries:
+	                        			<?php
+					                	$query="SELECT count(*) FROM Mutants";
+					                    $result=mysqli_query($link, $query) or die(mysqli_error($link));
+					                    $row = mysqli_fetch_array($result);
+					                    echo $row[0]; ?> </li>
+	                        		<li class="list-group-item">Human:
+	                        			<?php
+	                        			$query="SELECT count(MHCname) FROM Mutants where MHCname LIKE '%HLA%'";
+					                    $result=mysqli_query($link, $query) or die(mysqli_error($link));
+					                    $row = mysqli_fetch_array($result);
+					                    echo $row[0]; ?> </li>
+	                        		<li class="list-group-item">Mouse:
+	                        			<?php
+	                        			$query="SELECT count(MHCname) FROM Mutants where MHCname NOT LIKE '%HLA%'";
+					                    $result=mysqli_query($link, $query) or die(mysqli_error($link));
+					                    $row = mysqli_fetch_array($result);
+					                    echo $row[0]; ?> </li>
+	                        		<li class="list-group-item">Class I MHC:
+	                        			<?php
+	                        			$query="SELECT count(MHCname) FROM Mutants where MHCname LIKE '%HLA-A%' 
+	                        			OR MHCname LIKE '%HLA-B%' OR MHCname LIKE '%HLA-C%' OR MHCname LIKE '%HLA-E%' 
+	                        			OR MHCname LIKE '%HLA-F%' OR MHCname LIKE '%HLA-G%' OR MHCname LIKE '%H-2D%' 
+	                        			OR MHCname LIKE '%H-2K%' OR MHCname LIKE '%H-2L%' OR MHCname LIKE '%H-2Q%' 
+	                        			OR MHCname LIKE '%H-2M%' OR MHCname LIKE '%H-2T%'";
+	                        			$result=mysqli_query($link, $query) or die(mysqli_error($link));
+					                    $row = mysqli_fetch_array($result);
+					                    echo $row[0]; ?> </li>
+
+	                        		<li class="list-group-item">Class II MHC:
+		                        		<?php
+		                        		$query="SELECT count(MHCname) FROM Mutants where MHCname LIKE '%HLA-D%' 
+		                        		OR MHCname LIKE '%I-A%' OR MHCname LIKE '%I-E%'";
+		                        		$result=mysqli_query($link, $query) or die(mysqli_error($link));
+						                $row = mysqli_fetch_array($result);
+						                echo $row[0]; ?> </li>
+
+	                        		<li class="list-group-item">PDB structures: 
+	                        			<?php
+	                        			$count = count(glob("../structures/true_pdb/*"));
+	                        			echo $count; ?> </li>
 	                        	</ul>
 	                        </div>
 	                </div>
