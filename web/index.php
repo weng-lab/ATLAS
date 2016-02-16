@@ -26,6 +26,7 @@
 			            <li><a href="search.php">Search</a></li>
 			           	<li><a  href="downloads.php">Downloads</a></li>
                 		<li><a href="contact.html">Contact</a></li>
+                		<li><a href="help.php">Help</a></li>
 	            	</ul>
 	          	</div>
 	        </div>
@@ -123,21 +124,21 @@
 		  
 		    </div>
 		    <hr>
-		<footer>
-    		<div class= "row">
-    			<div class= "col-sm-4" align= "center">
-    				<img src="logos/umasslogoformal.gif" width='180' />
-    			</div>
-    			<div class= "col-sm-4" align= "center">
-    				<img src="logos/1_university_mark.jpg" width='225'/>
-    			</div>
-    			<div class= "col-sm-4" align= "center">
-    				<img src="logos/IBBR-Logo_Long.png" width='250' />
-    			</div>
-    		</div>
-    		<br></br>
-    	</footer>
-        <div>
+			<footer>
+	    		<div class= "row">
+	    			<div class= "col-sm-4" align= "center">
+	    				<img src="logos/umasslogoformal.gif" width='180' />
+	    			</div>
+	    			<div class= "col-sm-4" align= "center">
+	    				<img src="logos/1_university_mark.jpg" width='225'/>
+	    			</div>
+	    			<div class= "col-sm-4" align= "center">
+	    				<img src="logos/IBBR-Logo_Long.png" width='250' />
+	    			</div>
+	    		</div>
+	    		<br></br>
+	    	</footer>
+        </div>
 
 	</body>
 </html>

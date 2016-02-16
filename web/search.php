@@ -26,15 +26,22 @@
 			            <li class="active"><a href="search.php">Search</a></li>
 			           	<li><a  href="downloads.php">Downloads</a></li>
                 		<li><a href="contact.html">Contact</a></li>
+                		<li><a href="help.php">Help</a></li>
 	            	</ul>
 	          	</div>
 	        </div>
         </nav>
         <div class="container">
-        	<img class="my_logo" src="atlas_logo_v1.png" />
-        	<br></br>
+        	<!-- <img class="my_logo" src="atlas_logo_v1.png" /> -->
+        	<div class="page-header">
+                <h3>Search ATLAS</h3>
+            </div>
     		<div class = "well">
-    			<p> ATLAS (Altered TCR Ligand Affinities and Structures) is a database containing wild type and mutant binding affinities for all TCRs for which TCR-pMHC structures are available. It is available for training and evalutaing next generation TCR-pMHC scoring functions.</p>
+    			<p> Search through the ATLAS database by selecting a specific TCR, MHC allele, energy upper bound, 
+    				or peptide sequence motif. The ATLAS search returns entries satisfying <b>all</b> selected search
+    				fields. To browse the entire dataset simply click 'Search' leaving all fields with their default parameters.
+    				For a more extensive description of search categories and criteria please see the <a href="help.php">help</a> page.
+    			</p> 
     		</div>
     	</div>
 
@@ -43,7 +50,7 @@
     		<form action="search_results.php" method="POST" role="form">
 	    		<div class ="row">
 	    			<div class="col-sm-3">
-	    				<div class="panel panel-default">
+	    				<div class="panel panel-danger">
 	    					<div class="panel-heading">
 	    						<h3 class="panel-title">TCR </h3>
 	    					</div>
@@ -135,7 +142,7 @@
 				        </div>
 		            </div>
 	    			<div class="col-sm-3">
-	    				<div class="panel panel-default">
+	    				<div class="panel panel-info">
 	    					<div class="panel-heading">
 	    						<h3 class="panel-title"> MHC </h3>
 	    					</div>
@@ -180,21 +187,21 @@
 					    </div>
 					</div>
 					<div class="col-sm-3">
-	    				<div class="panel panel-default">
+	    				<div class="panel panel-warning">
 	    					<div class="panel-heading">
 	    						<h3 class="panel-title"> Energy </h3>
 	    					</div>
 	    					<div class="panel-body">
 				    			<div class="form-group">
 				    				<!--Select dG range -->
-				    				<label for="dG" > &#916G < </label>
+				    				<label for="dG" > &#916G (kcal mol<sup>-1</sup>) < </label>
 					                <input type="text" class="form-control" name="dG" value="0.00">
 					            </div>
 					        </div>
 					    </div>
 					</div>
 					<div class="col-sm-3">
-	    				<div class="panel panel-default">
+	    				<div class="panel panel-success">
 	    					<div class="panel-heading">
 	    						<h3 class="panel-title"> Peptide </h3>
 	    					</div>
@@ -209,8 +216,23 @@
 					</div>
 				</div>
 
-        		<input type="submit" name="SEL" class="btn btn-default" value="Search"><br><br>
+        		<input type="submit" name="SEL" class="btn btn-primary" value="Search"><br><br>
         	</form> 
+        	<hr>
+			<footer>
+	    		<div class= "row">
+	    			<div class= "col-sm-4" align= "center">
+	    				<img src="logos/umasslogoformal.gif" width='180' />
+	    			</div>
+	    			<div class= "col-sm-4" align= "center">
+	    				<img src="logos/1_university_mark.jpg" width='225'/>
+	    			</div>
+	    			<div class= "col-sm-4" align= "center">
+	    				<img src="logos/IBBR-Logo_Long.png" width='250' />
+	    			</div>
+	    		</div>
+	    		<br></br>
+	    	</footer>
         </div>  
 
 

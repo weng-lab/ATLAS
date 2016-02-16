@@ -42,16 +42,24 @@ $(document).ready(function() {
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="./">Home</a></li>
+                        <li><a href="search.php">Search</a></li>
                         <li><a  href="downloads.php">Downloads</a></li>
                         <li><a href="contact.html">Contact</a></li>
+                        <li><a href="help.php">Help</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
-        <div class="container">
+        <!-- <div class="container">
             <img class="my_logo" src="atlas_logo_v1.png" />
             <br></br>
+        </div> -->
+        <div class="container">
+            <div class= "page-header">
+                <h3>Search Results</h3>
+            </div>
         </div>
+
         <?php  
         $link = database_connect();
         // Check if input is valid
@@ -139,7 +147,9 @@ $(document).ready(function() {
                 }
 
                 if (isset($_POST['dG'])) {
+                    if ($_POST['dG'] != '0.00') {
                     $search_params[] = "(DeltaG_kcal_per_mol < '" . $_POST['dG'] . "')";
+                    }   
                 }
                 if (isset($_POST['peptide'])) {
                     if ($_POST['peptide'] != 'all') {
@@ -269,7 +279,23 @@ $(document).ready(function() {
             </div>
         <?php }
         ?>
-
+        <div class="container">
+            <hr>
+            <footer>
+                <div class= "row">
+                    <div class= "col-sm-4" align= "center">
+                        <img src="logos/umasslogoformal.gif" width='180' />
+                    </div>
+                    <div class= "col-sm-4" align= "center">
+                        <img src="logos/1_university_mark.jpg" width='225'/>
+                    </div>
+                    <div class= "col-sm-4" align= "center">
+                        <img src="logos/IBBR-Logo_Long.png" width='250' />
+                    </div>
+                </div>
+                <br></br>
+            </footer>
+        </div>
 
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
