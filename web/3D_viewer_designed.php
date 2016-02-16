@@ -78,7 +78,8 @@
                                     var geom = viewer.cartoon('protein', structure);
                                     viewer.centerOn(structure);
                                     viewer.fitTo(structure);
-                                    geom.colorBy(pv.color.byChain(pv.color.gradient(['lightcyan', 'darkblue'])));
+                                    // geom.colorBy(pv.color.byChain(pv.color.gradient(['lightcyan', 'darkblue'])));
+                                    geom.colorBy(pv.color.byChain());
                                     // display peptide mutations
                                     if (pep_mut[0] != "WT") {
                                         for (i=0; i < pep_mut.length; i++) {

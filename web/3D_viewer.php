@@ -60,7 +60,8 @@
                                     var geom = viewer.cartoon('protein', structure);
                                     viewer.centerOn(structure);
                                     viewer.fitTo(structure);
-                                    geom.colorBy(pv.color.byChain(pv.color.gradient(['lightcyan', 'darkblue'])));
+                                    //geom.colorBy(pv.color.byChain(pv.color.gradient(['lightcyan', 'darkblue'])));
+                                    geom.colorBy(pv.color.byChain());
                                 });
                             }
                             document.addEventListener('DOMContentLoaded', loadPDB);
