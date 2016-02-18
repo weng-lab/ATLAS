@@ -98,7 +98,7 @@
                         <img src="logos/IBBR-Logo_Long.png" width='250' />
                     </div>
                 </div>
-                <br></br>
+                 <br></br>
             </footer>
         </div>
     </body>
