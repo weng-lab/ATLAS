@@ -140,27 +140,27 @@
                                 <span class="glyphicon glyphicon-download"></span> Template
                             </a>
                             <br></br>
-                            <p> Designed model of 3UTT with the following mutation(s): <p>
+                            <p> Designed model of <?php echo $_GET['pdb'] ?> with the following mutation(s): <p>
                                 <ul class="list-group">
                                     <?php
                                     if ($_GET['tcr_mut'] == 'WT') {
-                                        ?><li class="list-group-item">TCR mutations: </li>
-                                        <li class="list-group-item">TCR mutation chains: </li>
+                                        ?><li class="list-group-item">TCR mutations: None</li>
+                                        <li class="list-group-item">TCR mutation chains: None</li>
                                         <?php }
                                     else {
                                         ?> <li class="list-group-item">TCR mutations: <?php echo $_GET['tcr_mut'];?> </li>
                                         <li class="list-group-item">TCR mutation chains: <?php echo $_GET['tcr_chain'];?></li>
                                         <?php }
                                     if ($_GET['mhc_mut'] == 'WT') {
-                                        ?><li class="list-group-item">MHC mutations: </li>
-                                        <li class="list-group-item">MHC mutation chains: </li>
+                                        ?><li class="list-group-item">MHC mutations: None</li>
+                                        <li class="list-group-item">MHC mutation chains: None</li>
                                         <?php }
                                     else {
                                         ?><li class="list-group-item">MHC mutations: <?php echo $_GET['mhc_mut'];?></li>
                                     <li class="list-group-item">MHC mutation chains: <?php echo $_GET['mhc_chain'];?></li>
                                     <?php }
                                     if ($_GET['pep_mut'] == 'WT') {
-                                        ?><li class="list-group-item">Peptide mutations: </li>
+                                        ?><li class="list-group-item">Peptide mutations: None</li>
                                     <?php }
                                     else {
                                         ?><li class="list-group-item">Peptide mutations: <?php echo $_GET['pep_mut'];?></li>
