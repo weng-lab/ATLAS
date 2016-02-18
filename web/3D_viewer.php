@@ -45,6 +45,20 @@
                             <div id="viewer"></div>
                             <script type='text/javascript' src='bio-pv.min.js'></script>
 
+<<<<<<< HEAD
+    <script type='text/javascript'>
+    function loadPDB() {
+      var pdbfile = "../all/" + "<?php echo $_GET['pdb']; ?>" + ".pdb";
+        pv.io.fetchPdb(pdbfile, function(structure) {
+            var geom = viewer.cartoon('protein', structure);
+            viewer.centerOn(structure);
+            viewer.fitTo(structure);
+            geom.colorBy(pv.color.byChain());
+        });
+    }
+    document.addEventListener('DOMContentLoaded', loadPDB);
+    </script>
+=======
                             <script type='text/javascript'>
                             var options = {
                             width: 525,
@@ -54,6 +68,7 @@
                             };
                             var viewer = pv.Viewer(document.getElementById('viewer'), options);
                             </script>
+>>>>>>> 5bd12a03d426a890458c38c092282d30488ffd80
 
                             <script type='text/javascript'>
                             function loadPDB() {
