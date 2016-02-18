@@ -11,6 +11,7 @@
 $(document).ready(function() {
     $('#result_table').DataTable( {
         searching: false,
+        processin: true,
         "columnDefs": [
                 // fix sorting of Kd column
                 { "type": "num-html", targets: 8 }
@@ -41,16 +42,24 @@ $(document).ready(function() {
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="./">Home</a></li>
+                        <li><a href="search.php">Search</a></li>
                         <li><a  href="downloads.php">Downloads</a></li>
                         <li><a href="contact.html">Contact</a></li>
+                        <li><a href="help.php">Help</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
-        <div class="container">
+        <!-- <div class="container">
             <img class="my_logo" src="atlas_logo_v1.png" />
             <br></br>
+        </div> -->
+        <div class="container">
+            <div class= "page-header">
+                <h3>Search Results</h3>
+            </div>
         </div>
+
         <?php  
         $link = database_connect();
         // Check if input is valid
@@ -62,7 +71,6 @@ $(document).ready(function() {
                 $query_columns = array("TCRname", "TCR_mut", "TCR_mut_chain", "MHCname", "MHC_mut", "MHC_mut_chain", "PEPseq", "PEP_mut", "Kd_microM", "DeltaG_kcal_per_mol", "true_PDB", "template_PDB", "PMID"); 
                 $query_columns_str = join(', ', $query_columns);
                 $col_count = 13;
-
 
                 // Get all parameters from search form
                 $search_params = array();
@@ -139,7 +147,9 @@ $(document).ready(function() {
                 }
 
                 if (isset($_POST['dG'])) {
+                    if ($_POST['dG'] != '0.00') {
                     $search_params[] = "(DeltaG_kcal_per_mol < '" . $_POST['dG'] . "')";
+                    }   
                 }
                 if (isset($_POST['peptide'])) {
                     if ($_POST['peptide'] != 'all') {
@@ -176,6 +186,9 @@ $(document).ready(function() {
                             <th>Template PDB</th>
                             <th>PMID</th>
                         </tr>
+                        <?php 
+                        // Write results to string for download
+                        $download_results = join("\t", $query_columns) . "\n"; ?>
                     </thead>
                     <tbody>
                         <?php
@@ -183,6 +196,11 @@ $(document).ready(function() {
                             echo "<tr>";
                             for ($i=0; $i<$col_count; $i++) {
                                 echo "<td>";
+                                if ($row[$query_columns[$i]] == "PMID") { 
+                                    $download_results .= $row[$query_columns[$i]];
+                                } else {
+                                    $download_results .= $row[$query_columns[$i]] . "\t";
+                                }
                                 if ($query_columns[$i] == "MHCname") {
                                     ?>
                                     <span style="white-space: nowrap;"> 
@@ -202,17 +220,56 @@ $(document).ready(function() {
                                 elseif ($query_columns[$i] == "true_PDB") {
                                     echo '<a href="3D_viewer.php?pdb=' . $row[$query_columns[$i]] . '">'. $row[$query_columns[$i]] . '</a>';
                                 }
+                                elseif ($query_columns[$i] == "template_PDB") {
+                                    if ($row['MHC_mut_chain'] == "") {
+                                        $tpdb_mhc_chain ="nan";
+                                    } else {
+                                        $tpdb_mhc_chain = preg_replace('/\s+/', '', $row['MHC_mut_chain']);
+                                        $tpdb_mhc_chain = preg_replace('/\|/', '.', $tpdb_mhc_chain);
+                                    }
+                                    if ($row['TCR_mut_chain'] == "") {
+                                        $tpdb_tcr_chain ="nan";
+                                    } else {
+                                        $tpdb_tcr_chain = preg_replace('/\s+/', '', $row['TCR_mut_chain']); 
+                                        $tpdb_tcr_chain = preg_replace('/\|/', '.', $tpdb_tcr_chain);
+                                    }
+                                    $tpdb_pdb = preg_replace('/\s+/', '', $row[$query_columns[$i]]);
+                                    $tpdb_mhc = preg_replace('/\s+/', '', $row['MHC_mut']);
+                                    $tpdb_mhc = preg_replace('/\|/', '.', $tpdb_mhc);
+                                    $tpdb_tcr = preg_replace('/\s+/', '', $row['TCR_mut']);
+                                    $tpdb_tcr = preg_replace('/\|/', '.', $tpdb_tcr);
+                                    $tpdb_pep = preg_replace('/\s+/', '', $row['PEP_mut']);
+                                    $tpdb_pep = preg_replace('/\|/', '.', $tpdb_pep);
+
+                                    echo '<a href="3D_viewer_designed.php?pdb=' . $tpdb_pdb . '&mhc_mut='. $tpdb_mhc 
+                                    . '&mhc_chain='. $tpdb_mhc_chain . '&tcr_mut='. $tpdb_tcr . '&tcr_chain='. $tpdb_tcr_chain 
+                                    . '&pep_mut=' . $tpdb_pep . '">'. $tpdb_pdb . '</a>';
+
+                                }
                                 else {
                                     echo $row[$query_columns[$i]];
                                 }
                                 echo "</td>"; 
                             }
+                            $download_results .= "\n";
                             echo "</tr>";
                         }
                         ?>
                     </tbody>
                 </table>
             </div>
+            <div class= "container">
+                <?php
+                echo '
+                <form action="tables/results_table.php" method="POST">
+                <input type="hidden" name="results" value="' . $download_results . '"> 
+                <button type="submit" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-download"></span> Download Results
+                </button>
+                </form>';
+                ?>
+            </div>
+            <br><br>
         <?php
         }
         else {
@@ -222,7 +279,23 @@ $(document).ready(function() {
             </div>
         <?php }
         ?>
-
+        <div class="container">
+            <hr>
+            <footer>
+                <div class= "row">
+                    <div class= "col-sm-4" align= "center">
+                        <img src="logos/umasslogoformal.gif" width='180' />
+                    </div>
+                    <div class= "col-sm-4" align= "center">
+                        <img src="logos/1_university_mark.jpg" width='225'/>
+                    </div>
+                    <div class= "col-sm-4" align= "center">
+                        <img src="logos/IBBR-Logo_Long.png" width='250' />
+                    </div>
+                </div>
+                <br></br>
+            </footer>
+        </div>
 
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
