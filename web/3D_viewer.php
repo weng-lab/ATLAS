@@ -60,7 +60,7 @@
 
     <script type='text/javascript'>
     function loadPDB() {
-        var pdbfile = "../../all/" + "<?php echo $_GET['pdb']; ?>" + ".pdb";
+      var pdbfile = "../all/" + "<?php echo $_GET['pdb']; ?>" + ".pdb";
         pv.io.fetchPdb(pdbfile, function(structure) {
             var geom = viewer.cartoon('protein', structure);
             viewer.centerOn(structure);
