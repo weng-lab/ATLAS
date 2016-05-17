@@ -1,95 +1,3 @@
-HELIX    1   1 ALA A   49  GLU A   53  5                                   5    
-HELIX    2   2 GLY A   56  TYR A   85  1                                  30    
-HELIX    3   3 ASP A  137  ALA A  150  1                                  14    
-HELIX    4   4 HIS A  151  GLY A  162  1                                  12    
-HELIX    5   5 GLY A  162  GLY A  175  1                                  14    
-HELIX    6   6 GLY A  175  GLN A  180  1                                   6    
-HELIX    7   7 GLN A  253  GLN A  255  5                                   3    
-HELIX    8   8 GLN D   79  SER D   83  5                                   5    
-HELIX    9   9 VAL E   85  THR E   89  5                                   5    
-HELIX   10  10 ASP E  117  VAL E  121  5                                   5    
-HELIX   11  11 SER E  132  GLN E  140  1                                   9    
-HELIX   12  12 ALA E  199  ASP E  204  1                                   6    
-SHEET    1   A 8 GLU A  46  PRO A  47  0                                        
-SHEET    2   A 8 THR A  31  ASP A  37 -1  N  ARG A  35   O  GLU A  46           
-SHEET    3   A 8 ARG A  21  VAL A  28 -1  N  GLY A  26   O  PHE A  33           
-SHEET    4   A 8 HIS A   3  VAL A  12 -1  N  ARG A   6   O  TYR A  27           
-SHEET    5   A 8 THR A  94  VAL A 103 -1  O  TYR A  99   N  TYR A   7           
-SHEET    6   A 8 PHE A 109  TYR A 118 -1  O  ARG A 111   N  ASP A 102           
-SHEET    7   A 8 LYS A 121  LEU A 126 -1  O  LEU A 126   N  HIS A 114           
-SHEET    8   A 8 TRP A 133  ALA A 135 -1  O  THR A 134   N  ALA A 125           
-SHEET    1   B 4 LYS A 186  ALA A 193  0                                        
-SHEET    2   B 4 GLU A 198  PHE A 208 -1  O  TRP A 204   N  HIS A 188           
-SHEET    3   B 4 PHE A 241  PRO A 250 -1  O  VAL A 249   N  ALA A 199           
-SHEET    4   B 4 GLU A 229  LEU A 230 -1  N  GLU A 229   O  ALA A 246           
-SHEET    1   C 4 LYS A 186  ALA A 193  0                                        
-SHEET    2   C 4 GLU A 198  PHE A 208 -1  O  TRP A 204   N  HIS A 188           
-SHEET    3   C 4 PHE A 241  PRO A 250 -1  O  VAL A 249   N  ALA A 199           
-SHEET    4   C 4 ARG A 234  PRO A 235 -1  N  ARG A 234   O  GLN A 242           
-SHEET    1   D 4 GLU A 222  ASP A 223  0                                        
-SHEET    2   D 4 THR A 214  ARG A 219 -1  N  ARG A 219   O  GLU A 222           
-SHEET    3   D 4 TYR A 257  GLN A 262 -1  O  THR A 258   N  GLN A 218           
-SHEET    4   D 4 LEU A 270  LEU A 272 -1  O  LEU A 272   N  CYS A 259           
-SHEET    1   E 4 LYS B   6  SER B  11  0                                        
-SHEET    2   E 4 ASN B  21  PHE B  30 -1  O  SER B  28   N  LYS B   6           
-SHEET    3   E 4 PHE B  62  PHE B  70 -1  O  PHE B  62   N  PHE B  30           
-SHEET    4   E 4 GLU B  50  HIS B  51 -1  N  GLU B  50   O  TYR B  67           
-SHEET    1   F 4 LYS B   6  SER B  11  0                                        
-SHEET    2   F 4 ASN B  21  PHE B  30 -1  O  SER B  28   N  LYS B   6           
-SHEET    3   F 4 PHE B  62  PHE B  70 -1  O  PHE B  62   N  PHE B  30           
-SHEET    4   F 4 SER B  55  PHE B  56 -1  N  SER B  55   O  TYR B  63           
-SHEET    1   G 4 GLU B  44  ARG B  45  0                                        
-SHEET    2   G 4 GLU B  36  LYS B  41 -1  N  LYS B  41   O  GLU B  44           
-SHEET    3   G 4 TYR B  78  ASN B  83 -1  O  ASN B  83   N  GLU B  36           
-SHEET    4   G 4 LYS B  91  LYS B  94 -1  O  LYS B  91   N  VAL B  82           
-SHEET    1   H 5 VAL D   3  GLN D   5  0                                        
-SHEET    2   H 5 ALA D  18  TYR D  24 -1  O  THR D  23   N  GLU D   4           
-SHEET    3   H 5 TYR D  70  ILE D  75 -1  O  ILE D  75   N  ALA D  18           
-SHEET    4   H 5 PHE D  60  ASN D  65 -1  N  ASN D  65   O  TYR D  70           
-SHEET    5   H 5 GLY D  53  ASP D  57 -1  N  LYS D  55   O  ALA D  62           
-SHEET    1   I 5 LEU D  10  PRO D  13  0                                        
-SHEET    2   I 5 THR D 103  LYS D 108  1  O  GLU D 104   N  LEU D  10           
-SHEET    3   I 5 THR D  85  ASN D  91 -1  N  TYR D  86   O  THR D 103           
-SHEET    4   I 5 PHE D  32  GLN D  37 -1  N  TYR D  35   O  LEU D  87           
-SHEET    5   I 5 GLU D  44  ILE D  49 -1  O  ILE D  46   N  TRP D  34           
-SHEET    1   J 4 LEU D  10  PRO D  13  0                                        
-SHEET    2   J 4 THR D 103  LYS D 108  1  O  GLU D 104   N  LEU D  10           
-SHEET    3   J 4 THR D  85  ASN D  91 -1  N  TYR D  86   O  THR D 103           
-SHEET    4   J 4 LEU D  97  PHE D  99 -1  O  ILE D  98   N  VAL D  90           
-SHEET    1   K 8 TYR D 152  ILE D 153  0                                        
-SHEET    2   K 8 PHE D 166  TRP D 174 -1  O  TRP D 174   N  TYR D 152           
-SHEET    3   K 8 SER D 130  THR D 135 -1  N  CYS D 132   O  ALA D 173           
-SHEET    4   K 8 ALA D 117  ASP D 123 -1  N  TYR D 119   O  LEU D 133           
-SHEET    5   K 8 GLU E 125  GLU E 130 -1  O  GLU E 130   N  ARG D 122           
-SHEET    6   K 8 LYS E 141  PHE E 151 -1  O  THR E 149   N  GLU E 125           
-SHEET    7   K 8 TYR E 189  SER E 198 -1  O  TYR E 189   N  PHE E 151           
-SHEET    8   K 8 VAL E 171  THR E 173 -1  N  CYS E 172   O  ARG E 194           
-SHEET    1   L 8 CYS D 157  MET D 161  0                                        
-SHEET    2   L 8 PHE D 166  TRP D 174 -1  O  SER D 168   N  LEU D 159           
-SHEET    3   L 8 SER D 130  THR D 135 -1  N  CYS D 132   O  ALA D 173           
-SHEET    4   L 8 ALA D 117  ASP D 123 -1  N  TYR D 119   O  LEU D 133           
-SHEET    5   L 8 GLU E 125  GLU E 130 -1  O  GLU E 130   N  ARG D 122           
-SHEET    6   L 8 LYS E 141  PHE E 151 -1  O  THR E 149   N  GLU E 125           
-SHEET    7   L 8 TYR E 189  SER E 198 -1  O  TYR E 189   N  PHE E 151           
-SHEET    8   L 8 LEU E 178  LYS E 179 -1  N  LEU E 178   O  ALA E 190           
-SHEET    1   M 4 ILE E   7  ALA E  10  0                                        
-SHEET    2   M 4 MET E  22  GLN E  28 -1  O  ARG E  25   N  ALA E  10           
-SHEET    3   M 4 LEU E  79  LEU E  81 -1  O  LEU E  79   N  LEU E  24           
-SHEET    4   M 4 TYR E  67  VAL E  69 -1  N  SER E  68   O  THR E  80           
-SHEET    1   N 6 SER E  13  ALA E  17  0                                        
-SHEET    2   N 6 THR E 110  VAL E 115  1  O  VAL E 115   N  LEU E  16           
-SHEET    3   N 6 SER E  90  SER E  97 -1  N  TYR E  92   O  THR E 110           
-SHEET    4   N 6 ALA E  34  ASP E  41 -1  N  GLN E  40   O  VAL E  91           
-SHEET    5   N 6 GLY E  45  SER E  52 -1  O  ILE E  49   N  TRP E  37           
-SHEET    6   N 6 GLY E  59  LYS E  60 -1  O  GLY E  59   N  TYR E  51           
-SHEET    1   O 4 SER E  13  ALA E  17  0                                        
-SHEET    2   O 4 THR E 110  VAL E 115  1  O  VAL E 115   N  LEU E  16           
-SHEET    3   O 4 SER E  90  SER E  97 -1  N  TYR E  92   O  THR E 110           
-SHEET    4   O 4 PHE E 105  PHE E 106 -1  O  PHE E 105   N  SER E  96           
-SHEET    1   P 4 LYS E 165  GLU E 166  0                                        
-SHEET    2   P 4 VAL E 156  VAL E 162 -1  N  VAL E 162   O  LYS E 165           
-SHEET    3   P 4 PHE E 209  PHE E 215 -1  O  GLN E 212   N  SER E 159           
-SHEET    4   P 4 GLN E 234  ALA E 240 -1  O  ALA E 240   N  PHE E 209           
 ATOM      1  N   GLY A   1      57.655  15.034  54.845  1.00 81.18           N  
 ATOM      2  CA  GLY A   1      58.769  15.747  55.557  1.00 81.99           C  
 ATOM      3  C   GLY A   1      58.939  15.349  57.022  1.00 79.38           C  
@@ -196,24 +104,16 @@ ATOM    103  O   SER A  13      34.698   2.817  84.790  1.00 58.55           O
 ATOM    104  CB  SER A  13      36.984   3.453  86.955  1.00 55.53           C  
 ATOM    105  OG  SER A  13      36.068   4.538  86.931  1.00 55.99           O  
 ATOM    106  N   ARG A  14      35.116   1.010  86.045  1.00 61.32           N  
-ATOM    107  CA AARG A  14      33.789   0.467  85.867  0.50 64.23           C  
-ATOM    108  CA BARG A  14      33.789   0.427  85.891  0.50 64.38           C  
+ATOM    107  CA  ARG A  14      33.789   0.467  85.867  1.00 64.23           C  
 ATOM    109  C   ARG A  14      33.163   0.429  87.273  1.00 66.63           C  
 ATOM    110  O   ARG A  14      33.886   0.388  88.264  1.00 66.78           O  
-ATOM    111  CB AARG A  14      33.848  -0.861  85.051  0.50 64.72           C  
-ATOM    112  CB BARG A  14      33.895  -0.982  85.291  0.50 64.98           C  
-ATOM    113  CG AARG A  14      34.539  -0.631  83.628  0.50 61.98           C  
-ATOM    114  CG BARG A  14      34.616  -0.993  83.926  0.50 63.16           C  
-ATOM    115  CD AARG A  14      34.414  -1.749  82.564  0.50 61.38           C  
-ATOM    116  CD BARG A  14      33.671  -1.231  82.769  0.50 63.70           C  
-ATOM    117  NE AARG A  14      35.678  -2.437  82.306  0.50 59.23           N  
-ATOM    118  NE BARG A  14      32.840  -0.068  82.471  0.50 61.09           N  
-ATOM    119  CZ AARG A  14      35.811  -3.527  81.545  0.50 59.81           C  
-ATOM    120  CZ BARG A  14      32.963   0.668  81.373  0.50 56.42           C  
-ATOM    121  NH1AARG A  14      34.761  -4.059  80.950  0.50 59.61           N  
-ATOM    122  NH1BARG A  14      32.153   1.702  81.190  0.50 52.69           N  
-ATOM    123  NH2AARG A  14      37.001  -4.095  81.385  0.50 58.71           N  
-ATOM    124  NH2BARG A  14      33.890   0.359  80.468  0.50 51.81           N  
+ATOM    111  CB  ARG A  14      33.848  -0.861  85.051  1.00 64.72           C  
+ATOM    113  CG  ARG A  14      34.539  -0.631  83.628  1.00 61.98           C  
+ATOM    115  CD  ARG A  14      34.414  -1.749  82.564  1.00 61.38           C  
+ATOM    117  NE  ARG A  14      35.678  -2.437  82.306  1.00 59.23           N  
+ATOM    119  CZ  ARG A  14      35.811  -3.527  81.545  1.00 59.81           C  
+ATOM    121  NH1 ARG A  14      34.761  -4.059  80.950  1.00 59.61           N  
+ATOM    123  NH2 ARG A  14      37.001  -4.095  81.385  1.00 58.71           N  
 ATOM    125  N   PRO A  15      31.821   0.516  87.373  1.00 69.51           N  
 ATOM    126  CA  PRO A  15      31.469   0.928  88.749  1.00 72.02           C  
 ATOM    127  C   PRO A  15      31.332  -0.133  89.853  1.00 74.75           C  

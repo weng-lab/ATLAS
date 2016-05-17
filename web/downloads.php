@@ -40,7 +40,7 @@
                 <h3>Full Datasets</h3>
             </div>
             <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-6">
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h3 class="panel-title">TCR genes </h3>
@@ -53,7 +53,7 @@
                         </div> 
                     </div>
                 </div>
-                 <div class="col-sm-4">
+                 <div class="col-sm-6">
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h3 class="panel-title">MHC class </h3>
@@ -66,7 +66,7 @@
                         </div> 
                     </div>
                 </div>
-                <div class="col-sm-4">
+                <!-- <div class="col-sm-4">
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h3 class="panel-title">Authors </h3>
@@ -78,7 +78,7 @@
                             </a>
                         </div> 
                     </div>
-                </div>
+                </div> -->
             </div>
             <hr>
             <div class="row">
@@ -90,7 +90,7 @@
                         <div class="panel-body">
                             <p> Full ATLAS table including TCR/peptide/MHC mutations, IDs for template PDBs, 
                                 binding data, and experimental details<p>
-                            <a href="tables/Mutants.xlsx"  class="btn btn-primary">
+                            <a href="tables/ATLAS.xlsx"  class="btn btn-primary">
                                 <span class="glyphicon glyphicon-download"></span> ATLAS table
                             </a>
                         </div> 

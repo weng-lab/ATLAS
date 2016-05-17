@@ -6432,7 +6432,7 @@ ATOM   6431 1HG  GLU E 115       5.496   1.713  27.865  1.00  0.00
 ATOM   6432 2HG  GLU E 115       6.913   2.494  27.129  1.00  0.00              
 TER                                                                             
 # All scores below are weighted scores, not raw scores.
-#BEGIN_POSE_ENERGIES_TABLE design_structures/4JFF_WT_nan_WT_nan_I7A_0001.pdb
+#BEGIN_POSE_ENERGIES_TABLE doubles/4JFF_WT_nan_WT_nan_I7A_0001.pdb
 label fa_atr fa_rep fa_sol fa_intra_rep pro_close fa_pair hbond_sr_bb hbond_lr_bb hbond_bb_sc hbond_sc dslf_ss_dst dslf_cs_ang dslf_ss_dih dslf_ca_dih rama omega fa_dun p_aa_pp ref total
 weights 0.8 0.44 0.65 0.004 1 0.49 0.585 1.17 1.17 1.1 0.5 2 5 5 0.2 0.5 0.56 0.32 1 NA
 pose -1654.6 593.906 858.353 4.41489 77.7455 -30.7212 -53.1396 -202.793 -41.5406 -17.9426 -2.74441 1.6194 19.8919 0.96759 -2.39866 18.8331 588.003 -39.3422 -77.92 40.5944
@@ -6851,4 +6851,4 @@ THR_412 -2.89631 0.0548 1.50092 0.00814 0 -0.12626 0 0 0 0 0 0 0 0 0.11811 1e-05
 VAL_413 -4.52471 0.5359 1.41357 0.01108 0 0 0 0 0 0 0 0 0 0 -0.20155 0.0412 0.45131 -0.24466 0.29 -2.22786
 LEU_414 -3.27668 0.15192 1.68767 0.01107 0 0 0 0 0 0 0 0 0 0 -0.14279 0.00115 0.80363 -0.13901 -0.1 -1.00303
 GLU_p:CtermProteinFull_415 -1.69388 0.36455 1.10379 0.0656 0 0 0 0 0 0 0 0 0 0 0 0 4.7293 0 -0.81 3.75936
-#END_POSE_ENERGIES_TABLE design_structures/4JFF_WT_nan_WT_nan_I7A_0001.pdb
+#END_POSE_ENERGIES_TABLE doubles/4JFF_WT_nan_WT_nan_I7A_0001.pdb

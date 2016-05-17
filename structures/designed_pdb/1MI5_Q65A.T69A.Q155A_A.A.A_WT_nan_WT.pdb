@@ -631,7 +631,7 @@ ATOM    630  H   SER A  42      52.220  39.795 -26.659  1.00  0.00
 ATOM    631  HA  SER A  42      50.342  40.503 -24.474  1.00  0.00              
 ATOM    632 1HB  SER A  42      49.722  42.586 -25.213  1.00  0.00              
 ATOM    633 2HB  SER A  42      51.453  42.565 -24.804  1.00  0.00              
-ATOM    634  HG  SER A  42      51.320  43.627 -26.703  1.00  0.00              
+ATOM    634  HG  SER A  42      50.718  43.635 -26.845  1.00  0.00              
 ATOM    635  N   PRO A  43      49.863  39.192 -27.210  1.00 68.09              
 ATOM    636  CA  PRO A  43      48.858  38.662 -28.114  1.00 70.66              
 ATOM    637  C   PRO A  43      48.337  39.690 -29.111  1.00 72.54              
@@ -6395,7 +6395,7 @@ ATOM   6394 1HG  GLU E 118      32.459  27.278  16.861  1.00  0.00
 ATOM   6395 2HG  GLU E 118      34.008  26.435  17.094  1.00  0.00              
 TER                                                                             
 # All scores below are weighted scores, not raw scores.
-#BEGIN_POSE_ENERGIES_TABLE design_structures/1MI5_Q65A.T69A.Q155A_A.A.A_WT_nan_WT_0001.pdb
+#BEGIN_POSE_ENERGIES_TABLE design_structures/1MI5_Q65A|T69A|Q155A_A|A|A_WT_nan_WT_0001.pdb
 label fa_atr fa_rep fa_sol fa_intra_rep pro_close fa_pair hbond_sr_bb hbond_lr_bb hbond_bb_sc hbond_sc dslf_ss_dst dslf_cs_ang dslf_ss_dih dslf_ca_dih rama omega fa_dun p_aa_pp ref total
 weights 0.8 0.44 0.65 0.004 1 0.49 0.585 1.17 1.17 1.1 0.5 2 5 5 0.2 0.5 0.56 0.32 1 NA
 pose -1600.47 968.289 860.105 4.62655 274.501 -29.1811 -48.637 -161.087 -26.1246 -18.0025 -5.26261 0.99766 0.36194 0.97723 52.6583 2.89223 650.733 -22.7064 -86.58 818.096
@@ -6811,4 +6811,4 @@ THR_409 -2.64454 0.08361 1.63556 0.01068 0 -0.13477 0 0 0 0 0 0 0 0 -0.00016 5e-
 VAL_410 -4.0541 0.23734 1.60788 0.0124 0 0 0 0 0 0 0 0 0 0 -0.17658 8e-05 0.02385 -0.32503 0.29 -2.38416
 THR_411 -2.36842 0.3763 1.56022 0.01092 0 0.0017 0 0 0 0 0 0 0 0 -0.12858 0.00396 1.96609 -0.32162 -0.27 0.83057
 GLU_p:CtermProteinFull_412 -2.36752 0.84899 2.38515 0.00675 0 -0.23891 0 0 0 -0.00135 0 0 0 0 0 0 2.41314 0 -0.81 2.23625
-#END_POSE_ENERGIES_TABLE design_structures/1MI5_Q65A.T69A.Q155A_A.A.A_WT_nan_WT_0001.pdb
+#END_POSE_ENERGIES_TABLE design_structures/1MI5_Q65A|T69A|Q155A_A|A|A_WT_nan_WT_0001.pdb
