@@ -27,6 +27,7 @@ def mutant_check(mut_str, pdb, p, chain_str=False):
 		if len(muts) != len(chains):
 			print 'ERROR: Unequal number of mutations and number of chains'
 			return 0
+	
 
 	for i in range(len(muts)):
 		PDB_f = open(p + '/' + pdb + '.pdb', 'r')
@@ -37,7 +38,7 @@ def mutant_check(mut_str, pdb, p, chain_str=False):
 				if splitline[0] == 'ATOM' and splitline[4] == chains[i] and splitline[5] == muts[i][1:-1]:
 					found_pos = True 
 					if aa_map[muts[i][0]] == splitline[3]:
-						# print ok
+						# print 'ok'
 						pass
 					else:
 						print 'ERROR: template residue does not match literature residue'
