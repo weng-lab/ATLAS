@@ -81,7 +81,6 @@ def LOCOCV(i, X, dGs, pdbs):
 		y = dGs[np.all(pdbs!= true_pdb, axis=1)]
 		res_ols = sm.OLS(y, train).fit()
 		prediction = res_ols.predict(energies)
-		print res_ols.params
 		return float(prediction)
 		
 
@@ -91,7 +90,6 @@ def LOCOCV(i, X, dGs, pdbs):
 		res_ols = sm.OLS(y, train).fit()
 
 		prediction = res_ols.predict(energies)
-		print res_ols.params
 		return float(prediction)
 
 	else:
@@ -129,6 +127,7 @@ def main():
 	print 'Coef:'
 	print res_ols.params
 	print res_ols.summary()
+	print 'Pvals:'
 	print res_ols.pvalues
 
 	print '\nHeader'

@@ -1,0 +1,23 @@
+df <- read.table("energy_table.txt", header=TRUE, sep="\t", na.strings = "\\N")
+df$DeltaG_kcal_per_mol[is.na(df$DeltaG_kcal_per_mol)] <- -5.05
+df$DeltaG_kcal_per_mol[df$DeltaG_kcal_per_mol > -5.05] <- -5.05
+
+png("regressor_cor.png", height=1500, width=3000, res=300)
+  par(mfrow=c(2,4), mar=c(4,4,1,1) + 0.5)
+  plot(df$fa_atr, df$DeltaG_kcal_per_mol, pch=21, col="black", bg="blue", ylab = "Experimental affinity (kcal/mol)", xlab = "fa_atr" )
+  text(-40,-13,paste("r = ", format(round(cor(df$fa_atr, df$DeltaG_kcal_per_mol),2), nsmall=2), sep=""))
+  plot(df$fa_pair, df$DeltaG_kcal_per_mol, pch=21, col="black", bg="blue", ylab = "Experimental affinity (kcal/mol)", xlab = "fa_pair")
+  text(-10,-13,paste("r = ", format(round(cor(df$fa_pair, df$DeltaG_kcal_per_mol),2), nsmall=2), sep=""))
+  plot(df$fa_rep, df$DeltaG_kcal_per_mol, pch=21, col="black", bg="blue", ylab = "Experimental affinity (kcal/mol)", xlab = "fa_rep")
+  text(2500,-13,paste("r = ", format(round(cor(df$fa_rep, df$DeltaG_kcal_per_mol),2), nsmall=2), sep=""))
+  plot(df$fa_sol, df$DeltaG_kcal_per_mol, pch=21, col="black", bg="blue", ylab = "Experimental affinity (kcal/mol)", xlab = "fa_sol")
+  text(70,-13,paste("r = ", format(round(cor(df$fa_sol, df$DeltaG_kcal_per_mol),2), nsmall=2), sep=""))
+  plot(df$hbond_bb_sc, df$DeltaG_kcal_per_mol, pch=21, col="black", bg="blue",ylab = "Experimental affinity (kcal/mol)", xlab ="hbond_bb_sc" )
+  text(-3,-13,paste("r = ", format(round(cor(df$hbond_bb_sc, df$DeltaG_kcal_per_mol),2), nsmall=2), sep=""))
+  plot(df$hbond_lr_bb, df$DeltaG_kcal_per_mol, pch=21, col="black", bg="blue", ylab = "Experimental affinity (kcal/mol)", xlab = "hbond_lr_bb")
+  text(-2.8,-13,paste("r = ", format(round(cor(df$hbond_lr_bb, df$DeltaG_kcal_per_mol),2), nsmall=2), sep=""))
+  plot(df$hbond_sc, df$DeltaG_kcal_per_mol, pch=21, col="black", bg="blue",ylab = "Experimental affinity (kcal/mol)", xlab ="hbond_sc" )
+  text(-4,-13,paste("r = ", format(round(cor(df$hbond_sc, df$DeltaG_kcal_per_mol),2), nsmall=2), sep=""))
+  plot(df$hbond_sr_bb, df$DeltaG_kcal_per_mol, pch=21, col="black", bg="blue",ylab = "Experimental affinity (kcal/mol)", xlab ="hbond_sr_bb" )
+  text(.0005,-13,paste("r = ", format(round(cor(df$hbond_sr_bb, df$DeltaG_kcal_per_mol),2), nsmall=2), sep=""))
+dev.off()
