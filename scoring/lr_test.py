@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import linear_reg_functions as lrf
 import numpy as np
 from sklearn import linear_model
 import statsmodels.api as sm
@@ -140,3 +141,17 @@ print y_vec
 plt.plot(x_vec, y_vec, c='r')
 plt.scatter(X[:,1], dGs)
 plt.savefig('lr_test.png')
+
+predictions = []
+for i in range(len(X)):
+	prediction = lrf.LOCOCV(i, X, dGs, pdbs)
+	predictions.append(prediction)
+predictions = np.array(predictions)
+
+# Stats
+testErr = lrf.RMSE(predictions, dGs)
+print '*******************************'
+print 'RMSE: ' + str(testErr) + ' kcal/mol'
+r = np.corrcoef(predictions, dGs)
+print 'Pearson\'s r: ' + str(r[0,1])
+print '*******************************'

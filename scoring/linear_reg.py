@@ -11,6 +11,8 @@ parser.add_argument('-in', help='data table output by energy_table.py', type=str
 args = parser.parse_args()
 
 
+
+
 def main():
 	######################################################
 	# Linear Regression to obtain coefficients and p-vals
@@ -62,6 +64,8 @@ def main():
 	plt.xlabel('Experimentally measured binding affinity (kcal/mol)')
 	plt.ylabel('Predicted binding affinity (kcal/mol)')
 	plt.savefig('prediction_scatterplot.png')
+
+	
 
 
 if __name__ == '__main__':

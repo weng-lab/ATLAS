@@ -96,3 +96,14 @@ def RMSE(pred, true):
 	'''
 	rmse = np.sqrt(np.mean(np.square(pred-true)))
 	return rmse
+
+def powerset(s):
+	'''
+	Calculate powerset of an input list
+	'''
+	result = [[]]
+	for x in s:
+		newsubsets = [subset + [x] for subset in result]
+		result.extend(newsubsets)
+	return result
+
