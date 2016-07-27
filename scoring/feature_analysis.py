@@ -4,11 +4,26 @@ import argparse
 import linear_reg_functions as lrf
 import numpy as np
 import statsmodels.api as sm 
+import matplotlib.pyplot as plt
 
 parser = argparse.ArgumentParser(description='Run LOCOCV on 2^8 feature combinations and record correlations between predicted'+
 	' and experimentally determined affinity')
 parser.add_argument('-in', help='data table output by energy_table.py', type=str, dest='infile', required=True)
 args = parser.parse_args()
+
+def plot_experiment_vs_predict(dGs, predictions, subset_features):
+	
+	plt.figure()
+	plt.plot(range(-15,1), range(-15,1), c='r')
+	plt.xlim(-15,-4)
+	plt.ylim(-12,-2)
+	plt.scatter(dGs, predictions)
+	plt.title('ATLAS TCR-pMHC complexes')
+	plt.xlabel('Experimentally measured binding affinity (kcal/mol)')
+	plt.ylabel('Predicted binding affinity (kcal/mol)')
+	plt.savefig('subset_plots/' + subset_features + '.png')
+	return
+
 
 def main():
 	# Open data table
@@ -58,6 +73,8 @@ def main():
 		OUT.write(str(testErr) + '\t')
 		r = np.corrcoef(predictions, dGs)
 		OUT.write(str(r[0,1])+'\n')
+		# Plot
+		plot_experiment_vs_predict(dGs, predictions, '_'.join(ps_header[index]))
 	OUT.close()
 
 if __name__ == '__main__':
