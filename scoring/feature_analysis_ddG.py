@@ -19,8 +19,8 @@ def plot_experiment_vs_predict(ddGs, predictions, subset_features):
 	plt.ylim(-6,6)
 	plt.scatter(ddGs, predictions)
 	plt.title('ATLAS TCR-pMHC complexes')
-	plt.xlabel('Experimentally measured ddG (kcal/mol)')
-	plt.ylabel('Predicted ddG (kcal/mol)')
+	plt.xlabel(r'Experimentally measured $\Delta\Delta$G (kcal/mol)')
+	plt.ylabel(r'Predicted $\Delta\Delta$G (kcal/mol)')
 	plt.savefig('subset_plots_ddG/' + subset_features + '.png')
 	plt.close()
 	return
