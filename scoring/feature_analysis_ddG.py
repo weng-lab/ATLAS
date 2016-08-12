@@ -12,15 +12,24 @@ parser.add_argument('-in', help='ddG formatted data table (energy_table_ddG.txt)
 args = parser.parse_args()
 
 def plot_experiment_vs_predict(ddGs, predictions, subset_features):
-	
+	plt.rcParams['font.family'] = 'serif'
+	plt.rcParams['font.sans-serif'] = ['Arial']
 	plt.figure()
-	plt.plot(range(-11,11), range(-11,11), c='r')
+	plt.rc('axes', linewidth=2)
+	plt.plot(range(-11,11), range(-11,11), c='r', linewidth=2)
 	plt.xlim(-10,10)
 	plt.ylim(-6,6)
 	plt.scatter(ddGs, predictions)
-	plt.title('ATLAS TCR-pMHC complexes')
-	plt.xlabel(r'Experimentally measured $\Delta\Delta$G (kcal/mol)')
-	plt.ylabel(r'Predicted $\Delta\Delta$G (kcal/mol)')
+	#plt.title('ATLAS TCR-pMHC complexes')
+
+	ax = plt.gca()
+	for tick in ax.xaxis.get_major_ticks():
+	    tick.label1.set_fontsize(14)
+	for tick in ax.yaxis.get_major_ticks():
+	    tick.label1.set_fontsize(14)
+
+	plt.xlabel(r'Experimentally measured $\Delta\Delta$G (kcal/mol)', fontsize=16)
+	plt.ylabel(r'Predicted $\Delta\Delta$G (kcal/mol)', fontsize=16)
 	plt.savefig('subset_plots_ddG/' + subset_features + '.png')
 	plt.close()
 	return
