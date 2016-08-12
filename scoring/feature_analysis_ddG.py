@@ -12,8 +12,6 @@ parser.add_argument('-in', help='ddG formatted data table (energy_table_ddG.txt)
 args = parser.parse_args()
 
 def plot_experiment_vs_predict(ddGs, predictions, subset_features):
-	plt.rcParams['font.family'] = 'serif'
-	plt.rcParams['font.sans-serif'] = ['Arial']
 	plt.figure()
 	plt.rc('axes', linewidth=2)
 	plt.plot(range(-11,11), range(-11,11), c='r', linewidth=2)
