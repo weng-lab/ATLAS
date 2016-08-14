@@ -14,9 +14,11 @@ args = parser.parse_args()
 def plot_experiment_vs_predict(dGs, predictions, subset_features, r):
 	
 	fig, ax = plt.subplots()
-	ax.plot(range(-15,1), range(-15,1), c='r')
+	ax.plot(range(-15,1), range(-15,1), c='r', linewidth=2)
 	ax.spines['right'].set_visible(False)
 	ax.spines['top'].set_visible(False)
+	ax.spines['left'].set_linewidth(2)
+	ax.spines['bottom'].set_linewidth(2)
 	ax.yaxis.set_ticks_position('left')
 	ax.xaxis.set_ticks_position('bottom')
 	ax.set_xlim([-15,-4])
