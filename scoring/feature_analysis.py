@@ -11,16 +11,24 @@ parser = argparse.ArgumentParser(description='Run LOCOCV on 2^8 feature combinat
 parser.add_argument('-in', help='data table output by energy_table.py', type=str, dest='infile', required=True)
 args = parser.parse_args()
 
-def plot_experiment_vs_predict(dGs, predictions, subset_features):
+def plot_experiment_vs_predict(dGs, predictions, subset_features, r):
 	
-	plt.figure()
-	plt.plot(range(-15,1), range(-15,1), c='r')
-	plt.xlim(-15,-4)
-	plt.ylim(-12,-2)
-	plt.scatter(dGs, predictions)
-	plt.title('ATLAS TCR-pMHC complexes')
-	plt.xlabel('Experimentally measured binding affinity (kcal/mol)')
-	plt.ylabel('Predicted binding affinity (kcal/mol)')
+	fig, ax = plt.subplots()
+	ax.plot(range(-15,1), range(-15,1), c='r')
+	ax.spines['right'].set_visible(False)
+	ax.spines['top'].set_visible(False)
+	ax.yaxis.set_ticks_position('left')
+	ax.xaxis.set_ticks_position('bottom')
+	ax.set_xlim([-15,-4])
+	ax.set_ylim([-12,-2])
+	ax.scatter(dGs, predictions)
+	xticks = map(int,ax.get_xticks().tolist())
+	yticks = map(int, ax.get_yticks().tolist())
+	ax.set_xticklabels(xticks, fontsize=16)
+	ax.set_yticklabels(yticks, fontsize=16)
+	ax.text(-13, -4, 'r = ' + str(round(r[0,1], 2)), fontsize= 20)
+	ax.set_xlabel('Experimentally measured binding affinity (kcal/mol)', fontsize=16)
+	ax.set_ylabel('Predicted binding affinity (kcal/mol)', fontsize=16)
 	plt.savefig('subset_plots/' + subset_features + '.png')
 	plt.close()
 	return
@@ -75,7 +83,7 @@ def main():
 		r = np.corrcoef(predictions, dGs)
 		OUT.write(str(r[0,1])+'\n')
 		# Plot
-		plot_experiment_vs_predict(dGs, predictions, '_'.join(ps_header[index]))
+		plot_experiment_vs_predict(dGs, predictions, '_'.join(ps_header[index]), r)
 	OUT.close()
 
 if __name__ == '__main__':
