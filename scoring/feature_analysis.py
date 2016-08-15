@@ -13,7 +13,8 @@ args = parser.parse_args()
 
 def plot_experiment_vs_predict(dGs, predictions, subset_features, r):
 	
-	fig, ax = plt.subplots()
+
+	fig, ax = plt.subplots(figsize=(3.7,3.2))
 	ax.plot(range(-15,1), range(-15,1), c='r', linewidth=2)
 	ax.spines['right'].set_visible(False)
 	ax.spines['top'].set_visible(False)
@@ -21,17 +22,20 @@ def plot_experiment_vs_predict(dGs, predictions, subset_features, r):
 	ax.spines['bottom'].set_linewidth(2)
 	ax.yaxis.set_ticks_position('left')
 	ax.xaxis.set_ticks_position('bottom')
+	ax.xaxis.set_tick_params(width=2)
+	ax.yaxis.set_tick_params(width=2)
 	ax.set_xlim([-15,-4])
 	ax.set_ylim([-12,-2])
-	ax.scatter(dGs, predictions)
+	ax.scatter(dGs, predictions, s=8)
 	xticks = map(int,ax.get_xticks().tolist())
 	yticks = map(int, ax.get_yticks().tolist())
-	ax.set_xticklabels(xticks, fontsize=16)
-	ax.set_yticklabels(yticks, fontsize=16)
-	ax.text(-13, -4, 'r = ' + str(round(r[0,1], 2)), fontsize= 20)
-	ax.set_xlabel('Experimentally measured binding affinity (kcal/mol)', fontsize=16)
-	ax.set_ylabel('Predicted binding affinity (kcal/mol)', fontsize=16)
-	plt.savefig('subset_plots/' + subset_features + '.png')
+	ax.set_xticklabels(xticks, fontsize=9)
+	ax.set_yticklabels(yticks, fontsize=9)
+	ax.text(-13, -4, 'r = ' + str(round(r[0,1], 2)), fontsize=14)
+	ax.set_xlabel(r'Experimentally measured $\Delta$G (kcal/mol)', fontsize=10)
+	ax.set_ylabel(r'Predicted $\Delta$G (kcal/mol)', fontsize=10)
+	plt.tight_layout()
+	plt.savefig('subset_plots/' + subset_features + '.png', dpi=300)
 	plt.close()
 	return
 
