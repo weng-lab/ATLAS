@@ -11,26 +11,32 @@ parser = argparse.ArgumentParser(description='Run LOCOCV on 2^8 feature combinat
 parser.add_argument('-in', help='ddG formatted data table (energy_table_ddG.txt)', type=str, dest='infile', required=True)
 args = parser.parse_args()
 
-def plot_experiment_vs_predict(ddGs, predictions, subset_features):
-	plt.rcParams['font.family'] = 'serif'
-	plt.rcParams['font.sans-serif'] = ['Arial']
-	plt.figure()
-	plt.rc('axes', linewidth=2)
-	plt.plot(range(-11,11), range(-11,11), c='r', linewidth=2)
-	plt.xlim(-10,10)
-	plt.ylim(-6,6)
-	plt.scatter(ddGs, predictions)
-	#plt.title('ATLAS TCR-pMHC complexes')
-
-	ax = plt.gca()
-	for tick in ax.xaxis.get_major_ticks():
-	    tick.label1.set_fontsize(14)
-	for tick in ax.yaxis.get_major_ticks():
-	    tick.label1.set_fontsize(14)
-
-	plt.xlabel(r'Experimentally measured $\Delta\Delta$G (kcal/mol)', fontsize=16)
-	plt.ylabel(r'Predicted $\Delta\Delta$G (kcal/mol)', fontsize=16)
-	plt.savefig('subset_plots_ddG/' + subset_features + '.png')
+def plot_experiment_vs_predict(ddGs, predictions, subset_features, r):
+	
+	fig, ax = plt.subplots(figsize=(3.7,3.2))
+	# plt.rc('axes', linewidth=2)
+	# plt.plot(range(-11,11), range(-11,11), c='r', linewidth=2)
+	ax.plot(range(-11,11), range(-11,11), c='r', linewidth=2)
+	ax.spines['right'].set_visible(False)
+	ax.spines['top'].set_visible(False)
+	ax.spines['left'].set_linewidth(2)
+	ax.spines['bottom'].set_linewidth(2)
+	ax.yaxis.set_ticks_position('left')
+	ax.xaxis.set_ticks_position('bottom')
+	ax.xaxis.set_tick_params(width=2)
+	ax.yaxis.set_tick_params(width=2)
+	ax.set_xlim([-10,10])
+	ax.set_ylim([-6,6])
+	ax.scatter(ddGs, predictions, s=8)
+	xticks = map(int,ax.get_xticks().tolist())
+	yticks = map(int, ax.get_yticks().tolist())
+	ax.set_xticklabels(xticks, fontsize=9)
+	ax.set_yticklabels(yticks, fontsize=9)
+	ax.text(-8, 4, 'r = ' + str(round(r[0,1], 2)), fontsize= 14)
+	ax.set_xlabel(r'Experimentally measured $\Delta\Delta$G (kcal/mol)', fontsize=10)
+	ax.set_ylabel(r'Predicted $\Delta\Delta$G (kcal/mol)', fontsize=10)
+	plt.tight_layout()
+	plt.savefig('subset_plots_ddG/' + subset_features + '.png', dpi=300)
 	plt.close()
 	return
 
@@ -86,7 +92,7 @@ def main():
 		r = np.corrcoef(predictions, ddGs)
 		OUT.write(str(r[0,1])+'\n')
 		# Plot
-		plot_experiment_vs_predict(ddGs, predictions, '_'.join(ps_header[index]))
+		plot_experiment_vs_predict(ddGs, predictions, '_'.join(ps_header[index]), r)
 	OUT.close()
 
 if __name__ == '__main__':
