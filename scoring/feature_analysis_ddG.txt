@@ -1,0 +1,2 @@
+subset	RMSE (kcal\mol)	r
+fa_atr	1.61164125235	0.610143710303
