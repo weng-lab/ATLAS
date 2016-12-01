@@ -8,15 +8,14 @@ import numpy as np
 import subprocess
 import re
 
-parser = argparse.ArgumentParser(description='score model complexes using Rosetta\'s score app')
+parser = argparse.ArgumentParser(description='score model complexes using Rosetta\'s score12 app')
 parser.add_argument('-f', help='ATLAS Mutants tab-delimited file (ex. Mutants_052016.txt)', type=str, dest='f',required=True)
-parser.add_argument('-w', help='Weights file for scoring with Rosetta (ex. weights_1.wts)', type=str, dest='w',required=True)
 parser.add_argument('-r', help='path to Rosetta3 (ex. /home/borrmant/Research/TCR/rosetta/rosetta-3.5/)', type=str, dest='ros_path', required=True)
 parser.add_argument('-s', help='path to Brian Pierce\'s TCR-pMHC structure database (ex. /home/borrmant/Research/TCR/tcr_structure_database/all/)',
 	type=str, dest='struct_path', required=True) 
 args = parser.parse_args()
 
-def score(pdb, weights, label):
+def score(pdb, label):
 	'''
 	Score PDB complex using Rosetta3 scoring function
 	'''
@@ -62,48 +61,39 @@ def dG_bind(COM_sc, TCR_sc, pMHC_sc):
 	TCR = open(TCR_sc, 'r')
 	pMHC= open(pMHC_sc, 'r')
 
-	quit()
-
-	header = COM.readline().split()[2:21]
+	COM.readline()
 	TCR.readline()
 	pMHC.readline()
-	COM_scores = np.array(map(float, COM.readline().split()[2:21]))
-	TCR_scores = np.array(map(float, TCR.readline().split()[2:21]))
-	pMHC_scores = np.array(map(float, pMHC.readline().split()[2:21]))
-	dG_scores = COM_scores - (TCR_scores + pMHC_scores)
-	dG_hash = {}
-	for i, energy in enumerate(header):
-		dG_hash[energy] = dG_scores[i]
+	COM_score = float(COM.readline().split()[1])
+	TCR_score = float(TCR.readline().split()[1])
+	pMHC_score = float(pMHC.readline().split()[1])
+	dG_score = COM_score - (TCR_score + pMHC_score)
+
 	COM.close()
 	TCR.close()
 	pMHC.close()
-	return dG_hash
+	return dG_score
 
 def main():
 	# Read Mutants table into dataframe
 	df = pd.read_csv(args.f, sep='\t')
-	# Add energy term columns
-	WF = open(args.w, 'r')
-	for line in WF:
-		energy = line.split()[0]
-		df[energy] = np.nan
+
 	for i, row in df.iterrows():
 		# Check if we need to use designed structure
 		if pd.notnull(row['true_PDB']):
 			true_pdb = str(row['true_PDB'])
 			# Score TCR-pMHC
-			score(args.struct_path + 'true_pdb/' + true_pdb + '.pdb', args.w, 'COM')
+			score(args.struct_path + 'true_pdb/' + true_pdb + '.pdb', 'COM')
 			# Score TCR
 			isolate(args.struct_path + 'true_pdb/' + true_pdb + '.pdb', 'TCR')
-			score('TCR.pdb', args.w, 'TCR')
+			score('TCR.pdb', 'TCR')
 			# Score pMHC
 			isolate(args.struct_path + 'true_pdb/' +  true_pdb + '.pdb', 'pMHC')
-			score('pMHC.pdb', args.w, 'pMHC')			
+			score('pMHC.pdb', 'pMHC')			
 			# Calculate dG bind
-			dG_scores = dG_bind('COM_score.sc', 'TCR_score.sc', 'pMHC_score.sc')
+			dG_score = dG_bind('COM_score.sc', 'TCR_score.sc', 'pMHC_score.sc')
 			# Append to dataframe
-			for energy in dG_scores:
-				df.loc[i, energy] = dG_scores[energy]
+			df.loc[i, 'dG_bind'] = dG_score
 			# Remove temporary files
 			os.remove('COM_score.sc')
 			os.remove('TCR_score.sc')
@@ -129,18 +119,17 @@ def main():
 			PEP_mut =  ''.join(str(row['PEP_mut']).replace('|', '.').split())
 			PDB_f = '_'.join([template_PDB, MHC_mut, MHC_mut_chain, TCR_mut, TCR_mut_chain, PEP_mut])
 			# Score TCR-pMHC
-			score(args.struct_path + 'designed_pdb/' + PDB_f + '.pdb', args.w, 'COM')
+			score(args.struct_path + 'designed_pdb/' + PDB_f + '.pdb', 'COM')
 			# Score TCR
 			isolate(args.struct_path + 'designed_pdb/' + PDB_f + '.pdb', 'TCR')
-			score('TCR.pdb', args.w, 'TCR')
+			score('TCR.pdb', 'TCR')
 			# Score pMHC
 			isolate(args.struct_path + 'designed_pdb/' +  PDB_f + '.pdb', 'pMHC')
-			score('pMHC.pdb', args.w, 'pMHC')			
+			score('pMHC.pdb', 'pMHC')			
 			# Calculate dG bind
-			dG_scores = dG_bind('COM_score.sc', 'TCR_score.sc', 'pMHC_score.sc')
+			dG_score = dG_bind('COM_score.sc', 'TCR_score.sc', 'pMHC_score.sc')
 			# Append to dataframe
-			for energy in dG_scores:
-				df.loc[i, energy] = dG_scores[energy]
+			df.loc[i, 'dG_bind'] = dG_score
 			# Remove temporary files
 			os.remove('COM_score.sc')
 			os.remove('TCR_score.sc')
@@ -148,7 +137,7 @@ def main():
 			os.remove('TCR.pdb')
 			os.remove('pMHC.pdb')
 	# Write to file
-	df.to_csv('energy_table.txt', sep='\t', index=False)
+	df.to_csv('energy_table_score12.txt', sep='\t', index=False)
 
 
 
