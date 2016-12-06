@@ -75,6 +75,30 @@ def get_pivot_residues(pdb_file, cdr_seqs):
 	CDR pivot residues (absolute residue numbers)
 	for input into backrub app
 	'''
+	myPDB = proteindatabank.PDB(pdb_file)
+	chain_sequence = myPDB.chain_sequence_list()
+	all_residues = ''
+	for tup in chain_sequence:
+		all_residues = all_residues + tup[1]
+	cdr_df = pd.read_csv(cdr_seqs, sep='\t')
+	# Get CDR sequences
+	row =  cdr_df[cdr_df['PDB ID'] == myPDB.ID].iloc[:,5:11]
+	# Check for no match and multiple matches
+	for cdr in row.values[0]:
+		re_results = re.findall('(?=('+cdr+'))', all_residues)
+		if len(re_results) == 0:
+			print 'ERROR: CDR sequence not found'
+			quit()
+		if len(re_results) > 1:
+			print 'ERROR: multiple CDR sequences found'
+			quit()
+	# Get list of pivot residue positions for all CDRs
+	pivot_positions = []
+	for cdr in row.values[0]:
+		srch_obj = re.search(cdr, all_residues)
+		pivot_positions = pivot_positions + range(srch_obj.start(), srch_obj.end())
+
+	return pivot_positions
 
 
 
@@ -100,12 +124,14 @@ def main():
 
 			# Get pivot_residues for CDR loops in absolute residue numbers 
 			# absolute residue numbering : 1 to total residues in PDB file
+			
+			get_pivot_residues(args.struct_path + template_pdb + '.pdb', args.cdr_seqs)
+
+
 			myPDB = proteindatabank.PDB(args.struct_path + template_pdb + '.pdb')
 			a = myPDB.chain_sequence_list()
 			print a 
 			quit()
-			get_pivot_residues(template_pdb, cdr_seqs)
-			
 
 			# Design mutations by backrub app and save structure
 

@@ -13,7 +13,7 @@ class PDB:
 			}
 
 	def __init__(self, pdb_file):
-		self.ID = pdb_file[:4]
+		self.ID = pdb_file[-8:-4]
 		self.FH = open(pdb_file, 'r')
 		self.full_string = open(pdb_file, 'r').read()
 
