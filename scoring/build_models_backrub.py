@@ -100,6 +100,10 @@ def main():
 
 			# Get pivot_residues for CDR loops in absolute residue numbers 
 			# absolute residue numbering : 1 to total residues in PDB file
+			myPDB = proteindatabank.PDB(args.struct_path + template_pdb + '.pdb')
+			a = myPDB.chain_sequence_list()
+			print a 
+			quit()
 			get_pivot_residues(template_pdb, cdr_seqs)
 			
 
