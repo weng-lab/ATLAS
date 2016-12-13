@@ -8,66 +8,14 @@ import subprocess
 import re
 import proteindatabank
 
-parser = argparse.ArgumentParser(description='build model complexes and score using Rosetta\'s backrub app')
+parser = argparse.ArgumentParser(description='build model complexes using Rosetta\'s backrub app')
 parser.add_argument('-f', help='ATLAS Mutants tab-delimited file (ex. Mutants_052016.txt)', type=str, dest='f',required=True)
 parser.add_argument('-r', help='path to Rosetta3 (ex. /home/borrmant/Research/TCR/rosetta/rosetta-3.5/)', type=str, dest='ros_path', required=True)
-parser.add_argument('-s', help='path to Brian Pierce\'s TCR-pMHC structure database (ex. /home/tb37w/ATLAS/structures/true_pdb/)',
+parser.add_argument('-s', help='path to Brian Pierce\'s TCR-pMHC structure database (ex. /home/tb37w/ATLAS/structures/)',
 	type=str, dest='struct_path', required=True) 
 parser.add_argument('-c', help='Brian Pierce\'s CDR sequences data table (CDR_seqs.txt)', type=str, dest='cdr_seqs', required=True) 
 args = parser.parse_args()
 
-
-def make_resfile(MHC_mut, MHC_mut_chain, TCR_mut, TCR_mut_chain, PEP_mut):
-	'''
-	Make resfile specifying mutations to design using fixbb app
-	NOTE:
-	Follow Brian Pierce's naming convention in the tcr_structure_database, namely:
-	MHC chain A -> chain A
-	MHC chain B -> chain B
-	TCR chain A -> chain D
-	TCR chain B -> chain E
-	peptide -> chain C
-	'''
-
-	tcr_chain_map = {'A': 'D', 'B':'E'}
-	RF = open('resfile', 'w')
-	RF.write('NATRO\nstart\n')
-	if MHC_mut != 'WT':
-		if pd.isnull(MHC_mut_chain):
-			print 'ERROR: MHC_mut_chain missing'
-			quit()
-		muts = re.findall('[A-Z]\d+[A-Z]', MHC_mut)
-		chains = re.findall('[A-Z]', MHC_mut_chain)
-		if len(muts) != len(chains):
-			print 'ERROR: not a chain for every mut'
-			quit()
-		for i in range(len(muts)):
-			search_obj = re.search('[A-Z](\d+)([A-Z])', muts[i])
-			res_num = search_obj.group(1)
-			mut_aa = search_obj.group(2)
-			RF.write(res_num + ' ' + chains[i] + ' PIKAA ' + mut_aa + '\n')
-	if TCR_mut != 'WT':
-		if pd.isnull(TCR_mut_chain):
-			print 'ERROR: TCR_mut_chain missing'
-			quit()
-		muts = re.findall('[A-Z]\d+[A-Z]', TCR_mut)
-		chains = re.findall('[A-Z]', TCR_mut_chain)
-		if len(muts) != len(chains):
-			print 'ERROR: not a chain for every mut'
-			quit()
-		for i in range(len(muts)):
-			search_obj = re.search('[A-Z](\d+)([A-Z])', muts[i])
-			res_num = search_obj.group(1)
-			mut_aa = search_obj.group(2)
-			RF.write(res_num + ' ' + tcr_chain_map[chains[i]] + ' PIKAA ' + mut_aa + '\n')
-	if PEP_mut != 'WT':
-		muts = re.findall('[A-Z]\d+[A-Z]', PEP_mut)
-		for mut in muts:
-			search_obj = re.search('[A-Z](\d+)([A-Z])', mut)
-			res_num = search_obj.group(1)
-			mut_aa = search_obj.group(2)
-			RF.write(res_num + ' C PIKAA ' + mut_aa + '\n')
-	RF.close()
 
 def get_pivot_residues(pdb_file, cdr_seqs):
 	'''
@@ -88,6 +36,7 @@ def get_pivot_residues(pdb_file, cdr_seqs):
 		re_results = re.findall('(?=('+cdr+'))', all_residues)
 		if len(re_results) == 0:
 			print 'ERROR: CDR sequence not found'
+			print cdr
 			quit()
 		if len(re_results) > 1:
 			print 'ERROR: multiple CDR sequences found'
@@ -99,52 +48,45 @@ def get_pivot_residues(pdb_file, cdr_seqs):
 		pivot_positions = pivot_positions + range(srch_obj.start(), srch_obj.end())
 
 	return pivot_positions
-
-
+def backrub(pdb, label, pivot_residues):
+	'''
+	Design mutations using Rosetta's backrub application
+	'''
+	if not os.path.exists('../structures/backrub_pdb'):
+		os.makedirs('../structures/backrub_pdb')
+	backrub_cmd = ['bsub', '-q', 'short', '-W', '60', '-R', 'rusage[mem=5000]', '-o', label + '.out', '-e', label + '.err',
+	args.ros_path + 'rosetta_source/bin/backrub.linuxgccrelease', '-database', 
+	args.ros_path + 'rosetta_database/', '-s', pdb, '-backrub:ntrials', '10000', 
+	'-pivot_residues'] + map(str, pivot_residues) + [ '-extrachi_cutoff', 
+	'1','-ex1', '-ex2', '-ex3', '-overwrite', '-out:path:pdb', 
+	'../structures/backrub_pdb']
+	process = subprocess.Popen(backrub_cmd)
 
 def main():
 	# Read Mutants table into dataframe
 	df = pd.read_csv(args.f, sep='\t')
 
 	for i, row in df.iterrows():
-		# Design model TCR-pMHC
+		# Get designed structures
 		if pd.isnull(row['true_PDB']):
 			template_pdb = str(row['template_PDB'])
-			# Get mutations that need to be designed
+			# Get mutations of designed structures
 			MHC_mut = df.loc[i, 'MHC_mut']
 			MHC_mut_chain = df.loc[i, 'MHC_mut_chain']
 			TCR_mut = df.loc[i, 'TCR_mut']
 			TCR_mut_chain = df.loc[i, 'TCR_mut_chain']
 			PEP_mut = df.loc[i, 'PEP_mut']
-			# Make resfile for backrub app
-			make_resfile(MHC_mut, MHC_mut_chain, TCR_mut, TCR_mut_chain, PEP_mut)
 			# Make label for structure
 			label = '_'.join(map(str,[MHC_mut, MHC_mut_chain, TCR_mut, TCR_mut_chain, PEP_mut]))
 			label = '_'+ re.sub('\s+','',label)
+			label = re.sub('\|', '.', label)
 
 			# Get pivot_residues for CDR loops in absolute residue numbers 
 			# absolute residue numbering : 1 to total residues in PDB file
-			
-			get_pivot_residues(args.struct_path + template_pdb + '.pdb', args.cdr_seqs)
-
-
-			myPDB = proteindatabank.PDB(args.struct_path + template_pdb + '.pdb')
-			a = myPDB.chain_sequence_list()
-			print a 
-			quit()
+			pivot_residues = get_pivot_residues(args.struct_path + 'true_pdb/' + template_pdb + '.pdb', args.cdr_seqs)
 
 			# Design mutations by backrub app and save structure
-
-
-
-
-
-
-
-
-
-
-
+			backrub(args.struct_path + 'designed_pdb/' +  template_pdb + label +  '.pdb', label, pivot_residues)
 
 
 if __name__ == '__main__':
