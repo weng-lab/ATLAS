@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 
-
 import argparse
 import os
 import pandas as pd
@@ -14,6 +13,7 @@ parser.add_argument('-w', help='Weights file for scoring with Rosetta (ex. weigh
 parser.add_argument('-r', help='path to Rosetta3 (ex. /home/borrmant/Research/TCR/rosetta/rosetta-3.5/)', type=str, dest='ros_path', required=True)
 parser.add_argument('-s', help='path to Brian Pierce\'s TCR-pMHC structure database (ex. /home/borrmant/Research/TCR/tcr_structure_database/all/)',
 	type=str, dest='struct_path', required=True) 
+parser.add_argument('-b', help='use backrub models (ex. True)', type=bool, default=False)
 args = parser.parse_args()
 
 def score(pdb, weights, label):
@@ -112,6 +112,12 @@ def main():
 		
 		# Use designed structure
 		elif pd.isnull(row['true_PDB']):
+			# Use backrub models?
+			if args.b:
+				designed_pdb_folder = 'backrub_pdb/'
+			else:
+				designed_pdb_folder = 'designed_pdb/'
+
 			# Get designed PDB file
 			template_PDB = str(row['template_PDB'])
 			MHC_mut = ''.join(str(row['MHC_mut']).replace('|', '.').split())
@@ -128,12 +134,12 @@ def main():
 			PEP_mut =  ''.join(str(row['PEP_mut']).replace('|', '.').split())
 			PDB_f = '_'.join([template_PDB, MHC_mut, MHC_mut_chain, TCR_mut, TCR_mut_chain, PEP_mut])
 			# Score TCR-pMHC
-			score(args.struct_path + 'designed_pdb/' + PDB_f + '.pdb', args.w, 'COM')
+			score(args.struct_path + designed_pdb_folder + PDB_f + '.pdb', args.w, 'COM')
 			# Score TCR
-			isolate(args.struct_path + 'designed_pdb/' + PDB_f + '.pdb', 'TCR')
+			isolate(args.struct_path + designed_pdb_folder + PDB_f + '.pdb', 'TCR')
 			score('TCR.pdb', args.w, 'TCR')
 			# Score pMHC
-			isolate(args.struct_path + 'designed_pdb/' +  PDB_f + '.pdb', 'pMHC')
+			isolate(args.struct_path + designed_pdb_folder +  PDB_f + '.pdb', 'pMHC')
 			score('pMHC.pdb', args.w, 'pMHC')			
 			# Calculate dG bind
 			dG_scores = dG_bind('COM_score.sc', 'TCR_score.sc', 'pMHC_score.sc')
@@ -147,7 +153,10 @@ def main():
 			os.remove('TCR.pdb')
 			os.remove('pMHC.pdb')
 	# Write to file
-	df.to_csv('energy_table.txt', sep='\t', index=False)
+	if args.b:
+		df.to_csv('energy_table_backrub.txt', sep='\t', index=False)
+	else:
+		df.to_csv('energy_table.txt', sep='\t', index=False)
 
 
 
