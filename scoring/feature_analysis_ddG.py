@@ -8,7 +8,8 @@ import matplotlib.pyplot as plt
 
 parser = argparse.ArgumentParser(description='Run LOCOCV on 2^8 feature combinations and record correlations between predicted'+
 	' and experimentally determined affinity')
-parser.add_argument('-in', help='ddG formatted data table (energy_table_ddG.txt)', type=str, dest='infile', required=True)
+parser.add_argument('-i', help='ddG formatted data table (energy_table_ddG.txt)', type=str, dest='infile', required=True)
+parser.add_argument('-o', help='output table with stats', type=str, dest='outfile', required=True)
 args = parser.parse_args()
 
 def plot_experiment_vs_predict(ddGs, predictions, subset_features, r):
@@ -36,7 +37,7 @@ def plot_experiment_vs_predict(ddGs, predictions, subset_features, r):
 	ax.set_xlabel(r'Experimentally measured $\Delta\Delta$G (kcal/mol)', fontsize=10)
 	ax.set_ylabel(r'Predicted $\Delta\Delta$G (kcal/mol)', fontsize=10)
 	plt.tight_layout()
-	plt.savefig('subset_plots_ddG/' + subset_features + '.png', dpi=300)
+	plt.savefig('backrub_ddG_plots/' + subset_features + '.png', dpi=300)
 	plt.close()
 	return
 
@@ -75,7 +76,7 @@ def main():
 	for subset in ps[1:]:
 		ps_header.append(format_header[subset])
 	# Perform LOCOCV on each subset of features and record correlation between predicted and experimental affinity
-	OUT = open('feature_analysis_ddG.txt', 'w')
+	OUT = open(args.outfile, 'w')
 	OUT.write('subset\tRMSE (kcal\mol)\tr\n')
 	for index, subset in enumerate(ps[1:]):
 		subset_X = X[:, [0] + subset]
