@@ -37,7 +37,7 @@ def plot_experiment_vs_predict(ddGs, predictions, subset_features, r):
 	ax.set_xlabel(r'Experimentally measured $\Delta\Delta$G (kcal/mol)', fontsize=10)
 	ax.set_ylabel(r'Predicted $\Delta\Delta$G (kcal/mol)', fontsize=10)
 	plt.tight_layout()
-	plt.savefig('backrub_ddG_plots/' + subset_features + '.png', dpi=300)
+	plt.savefig('subset_ddG_plots/' + subset_features + '.png', dpi=300)
 	plt.close()
 	return
 

@@ -1,0 +1,23 @@
+TCR_mut	TCR_mut_chain	MHC_mut	MHC_mut_chain	PEP_mut	true_PDB	template_PDB
+S99A	B	WT	nan	WT	2VLR	2VLJ
+Q55A	B	WT	nan	WT	3MV9	3MV7
+Q55H	B	WT	nan	WT	3MV8	3MV7
+WT	nan	WT	nan	V7R	1QSE	1AO7
+WT	nan	WT	nan	P6A	1QRN	1AO7
+WT	nan	WT	nan	Y8A	1QSF	1AO7
+WT	nan	Q65A | T69A | Q155A	A | A | A	WT	3KXF	2AK4
+WT	nan	WT	nan	Y5F	3QFJ	1AO7
+D27F | R28L | I50T | S52R | N53E | Y71H | V93D | A94G | K96R | S97L | L44P | S50W | V51G | G52P | I53F | T100M | E102G | L103W | F104Q	A | A | A | A | A | A | A | A | A | A | B | B | B | B | B | B | B | B | B	WT	nan	WT	4JFF	3HG1
+WT	nan	WT	nan	G4A	4JFD	4JFF
+WT	nan	WT	nan	I7A	4JFE	4JFF
+A99M | G100S | G101A | R102Q	B |B | B | B	WT	nan	WT	4FTV	1AO7
+WT	nan	WT	nan	F6L	3VXS	3VXR
+WT	nan	WT	nan	E5D	4PRH	4PRI
+WT	nan	WT	nan	L6M	4G9F	4G8G
+Q50P | S51F | S52W | G49S | A50V | I52M	A | A | A | B | B | B	WT	nan	WT	2F53	2F54
+Q51T | S52P | S53W | T95L | S96L | G97D | S99T | G50A | A51I | G52Q | I53T | V95L	A | A | A | A | A | A | A | B | B | B | B | B	WT	nan	WT	2P5E	2BNR
+Q51T | S52P | S53W | G50S | A51V | I53M | T95L | S96L | G97D | S99T | V95L	A | A | A | B | B | B | A | A | A | A | B	WT	nan	WT	2P5W	2BNR
+D26Y | L98W	A | B	WT	nan	WT	4L3E	3QDG
+D26Y | L98W	A | B	WT	nan	WT	4L3E	3QDG
+WT	nan	WT	nan	K9E	3QIW	3QIU
+Y31A	A	WT	nan	WT	4P46	4P23

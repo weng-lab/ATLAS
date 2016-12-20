@@ -1,0 +1,256 @@
+subset	RMSE (kcal\mol)	r
+fa_atr	1.61164125235	0.610143710303
+fa_pair	1.98601570423	0.238950567956
+fa_atr fa_pair	1.62481054922	0.601814091709
+fa_rep	2.15138853117	0.0496567469767
+fa_atr fa_rep	1.64600889361	0.589735530443
+fa_pair fa_rep	2.02854813271	0.222754610888
+fa_atr fa_pair fa_rep	1.65100392906	0.585472566534
+fa_sol	1.86557425749	0.403374638734
+fa_atr fa_sol	1.59114205731	0.62312803609
+fa_pair fa_sol	1.84964546504	0.42029045044
+fa_atr fa_pair fa_sol	1.59836881898	0.61864584436
+fa_rep fa_sol	1.94533655584	0.344898712634
+fa_atr fa_rep fa_sol	1.61876608463	0.607780516786
+fa_pair fa_rep fa_sol	1.90721807887	0.374734799874
+fa_atr fa_pair fa_rep fa_sol	1.61686262637	0.6080447033
+hbond_bb_sc	2.1015509696	-0.182092726333
+fa_atr hbond_bb_sc	1.60538744789	0.614058676846
+fa_pair hbond_bb_sc	2.00552834127	0.210052579825
+fa_atr fa_pair hbond_bb_sc	1.61532518409	0.607835258347
+fa_rep hbond_bb_sc	2.17875959523	0.0186518259103
+fa_atr fa_rep hbond_bb_sc	1.62854667428	0.60038796275
+fa_pair fa_rep hbond_bb_sc	2.04686117968	0.199334124372
+fa_atr fa_pair fa_rep hbond_bb_sc	1.63340336057	0.596658729195
+fa_sol hbond_bb_sc	1.8484193467	0.423391996246
+fa_atr fa_sol hbond_bb_sc	1.61036427288	0.611322807667
+fa_pair fa_sol hbond_bb_sc	1.83190255879	0.438673582495
+fa_atr fa_pair fa_sol hbond_bb_sc	1.6117057997	0.610397249732
+fa_rep fa_sol hbond_bb_sc	1.91171207447	0.375871358201
+fa_atr fa_rep fa_sol hbond_bb_sc	1.63094376243	0.599562179847
+fa_pair fa_rep fa_sol hbond_bb_sc	1.88302553977	0.397650390177
+fa_atr fa_pair fa_rep fa_sol hbond_bb_sc	1.62628872511	0.601834594147
+hbond_lr_bb	2.05349470461	-0.0161553537358
+fa_atr hbond_lr_bb	1.61433650388	0.608603483457
+fa_pair hbond_lr_bb	1.98443052316	0.245469172311
+fa_atr fa_pair hbond_lr_bb	1.62880630242	0.599379366864
+fa_rep hbond_lr_bb	2.14518198659	0.0766778990404
+fa_atr fa_rep hbond_lr_bb	1.65038250074	0.587256851235
+fa_pair fa_rep hbond_lr_bb	2.0289623576	0.229379994617
+fa_atr fa_pair fa_rep hbond_lr_bb	1.65649805757	0.582128330938
+fa_sol hbond_lr_bb	1.86092629734	0.409747794632
+fa_atr fa_sol hbond_lr_bb	1.59377215143	0.621628833601
+fa_pair fa_sol hbond_lr_bb	1.84822722226	0.422830926614
+fa_atr fa_pair fa_sol hbond_lr_bb	1.60206169872	0.616460791591
+fa_rep fa_sol hbond_lr_bb	1.94227897829	0.352271968106
+fa_atr fa_rep fa_sol hbond_lr_bb	1.622511321	0.605613078383
+fa_pair fa_rep fa_sol hbond_lr_bb	1.90784968097	0.377220047381
+fa_atr fa_pair fa_rep fa_sol hbond_lr_bb	1.62129204533	0.605373314724
+hbond_bb_sc hbond_lr_bb	2.08592280833	-0.0203752427786
+fa_atr hbond_bb_sc hbond_lr_bb	1.60101292752	0.616997233849
+fa_pair hbond_bb_sc hbond_lr_bb	1.99510283105	0.231966759451
+fa_atr fa_pair hbond_bb_sc hbond_lr_bb	1.61226967688	0.609945429446
+fa_rep hbond_bb_sc hbond_lr_bb	2.16066410392	0.0653803651353
+fa_atr fa_rep hbond_bb_sc hbond_lr_bb	1.62505950667	0.602967918279
+fa_pair fa_rep hbond_bb_sc hbond_lr_bb	2.03664444535	0.219662534964
+fa_atr fa_pair fa_rep hbond_bb_sc hbond_lr_bb	1.63141650649	0.598251461485
+fa_sol hbond_bb_sc hbond_lr_bb	1.82576865621	0.447415303036
+fa_atr fa_sol hbond_bb_sc hbond_lr_bb	1.60801471251	0.61297651878
+fa_pair fa_sol hbond_bb_sc hbond_lr_bb	1.81478667605	0.4563662916
+fa_atr fa_pair fa_sol hbond_bb_sc hbond_lr_bb	1.6103385253	0.611423801863
+fa_rep fa_sol hbond_bb_sc hbond_lr_bb	1.88691972863	0.40374274352
+fa_atr fa_rep fa_sol hbond_bb_sc hbond_lr_bb	1.62903798302	0.600881889369
+fa_pair fa_rep fa_sol hbond_bb_sc hbond_lr_bb	1.86558548738	0.417639666891
+fa_atr fa_pair fa_rep fa_sol hbond_bb_sc hbond_lr_bb	1.62535988817	0.602515047027
+hbond_sc	1.9935892902	0.217012123681
+fa_atr hbond_sc	1.60967330463	0.611773320032
+fa_pair hbond_sc	1.98804813097	0.258179636838
+fa_atr fa_pair hbond_sc	1.63477981151	0.595724860657
+fa_rep hbond_sc	2.08728853976	0.192168856072
+fa_atr fa_rep hbond_sc	1.6474615407	0.589777622823
+fa_pair fa_rep hbond_sc	2.03577306221	0.244409472189
+fa_atr fa_pair fa_rep hbond_sc	1.66343950234	0.578039023289
+fa_sol hbond_sc	1.86417884369	0.407357601645
+fa_atr fa_sol hbond_sc	1.57992318624	0.630486009888
+fa_pair fa_sol hbond_sc	1.86504900753	0.40717435806
+fa_atr fa_pair fa_sol hbond_sc	1.60808214001	0.613414446228
+fa_rep fa_sol hbond_sc	1.94638492308	0.351498609387
+fa_atr fa_rep fa_sol hbond_sc	1.61061498392	0.613980837553
+fa_pair fa_rep fa_sol hbond_sc	1.92553736689	0.362742439342
+fa_atr fa_pair fa_rep fa_sol hbond_sc	1.62939998328	0.601500782741
+hbond_bb_sc hbond_sc	2.02746179919	0.196886337769
+fa_atr hbond_bb_sc hbond_sc	1.59963643718	0.61834266514
+fa_pair hbond_bb_sc hbond_sc	2.00009411327	0.251609332402
+fa_atr fa_pair hbond_bb_sc hbond_sc	1.62085434302	0.604932982091
+fa_rep hbond_bb_sc hbond_sc	2.10198062937	0.191512781492
+fa_atr fa_rep hbond_bb_sc hbond_sc	1.62488375404	0.603978734638
+fa_pair fa_rep hbond_bb_sc hbond_sc	2.04422602203	0.241054211573
+fa_atr fa_pair fa_rep hbond_bb_sc hbond_sc	1.64100460854	0.592868910237
+fa_sol hbond_bb_sc hbond_sc	1.84601154746	0.431092036879
+fa_atr fa_sol hbond_bb_sc hbond_sc	1.59793041302	0.620003714879
+fa_pair fa_sol hbond_bb_sc hbond_sc	1.84598381812	0.429752117182
+fa_atr fa_pair fa_sol hbond_bb_sc hbond_sc	1.61829530191	0.607288482993
+fa_rep fa_sol hbond_bb_sc hbond_sc	1.91056345688	0.387506814206
+fa_atr fa_rep fa_sol hbond_bb_sc hbond_sc	1.62028127721	0.607785885244
+fa_pair fa_rep fa_sol hbond_bb_sc hbond_sc	1.8995679113	0.390866393134
+fa_atr fa_pair fa_rep fa_sol hbond_bb_sc hbond_sc	1.63476441302	0.597988521433
+hbond_lr_bb hbond_sc	1.99632660318	0.213710786523
+fa_atr hbond_lr_bb hbond_sc	1.61467148171	0.608780282983
+fa_pair hbond_lr_bb hbond_sc	1.98815874013	0.258843830105
+fa_atr fa_pair hbond_lr_bb hbond_sc	1.63850584916	0.593414988134
+fa_rep hbond_lr_bb hbond_sc	2.09083162397	0.190816949578
+fa_atr fa_rep hbond_lr_bb hbond_sc	1.65330020728	0.586278556189
+fa_pair fa_rep hbond_lr_bb hbond_sc	2.03665483343	0.245002183454
+fa_atr fa_pair fa_rep hbond_lr_bb hbond_sc	1.66800717201	0.575197630394
+fa_sol hbond_lr_bb hbond_sc	1.86403186107	0.408754760826
+fa_atr fa_sol hbond_lr_bb hbond_sc	1.58419224565	0.62797350357
+fa_pair fa_sol hbond_lr_bb hbond_sc	1.86266903926	0.410377530428
+fa_atr fa_pair fa_sol hbond_lr_bb hbond_sc	1.6112739625	0.611448447188
+fa_rep fa_sol hbond_lr_bb hbond_sc	1.94668846945	0.353739149762
+fa_atr fa_rep fa_sol hbond_lr_bb hbond_sc	1.61490916491	0.611354788519
+fa_pair fa_rep fa_sol hbond_lr_bb hbond_sc	1.92394722079	0.366008836207
+fa_atr fa_pair fa_rep fa_sol hbond_lr_bb hbond_sc	1.63268516843	0.599396179941
+hbond_bb_sc hbond_lr_bb hbond_sc	2.02518210829	0.204685416021
+fa_atr hbond_bb_sc hbond_lr_bb hbond_sc	1.59969108412	0.61853745274
+fa_pair hbond_bb_sc hbond_lr_bb hbond_sc	1.99496374049	0.259932319952
+fa_atr fa_pair hbond_bb_sc hbond_lr_bb hbond_sc	1.61981998333	0.605788618495
+fa_rep hbond_bb_sc hbond_lr_bb hbond_sc	2.09828940982	0.199349715628
+fa_atr fa_rep hbond_bb_sc hbond_lr_bb hbond_sc	1.62537581975	0.603990610599
+fa_pair fa_rep hbond_bb_sc hbond_lr_bb hbond_sc	2.03881914448	0.24907902407
+fa_atr fa_pair fa_rep hbond_bb_sc hbond_lr_bb hbond_sc	1.64054896602	0.593443488955
+fa_sol hbond_bb_sc hbond_lr_bb hbond_sc	1.83122576862	0.44667523414
+fa_atr fa_sol hbond_bb_sc hbond_lr_bb hbond_sc	1.60125995131	0.618073185736
+fa_pair fa_sol hbond_bb_sc hbond_lr_bb hbond_sc	1.83057282577	0.44554196567
+fa_atr fa_pair fa_sol hbond_bb_sc hbond_lr_bb hbond_sc	1.62024581861	0.606140731226
+fa_rep fa_sol hbond_bb_sc hbond_lr_bb hbond_sc	1.89331111721	0.405703451122
+fa_atr fa_rep fa_sol hbond_bb_sc hbond_lr_bb hbond_sc	1.62356309615	0.605726701242
+fa_pair fa_rep fa_sol hbond_bb_sc hbond_lr_bb hbond_sc	1.88301035769	0.408368279422
+fa_atr fa_pair fa_rep fa_sol hbond_bb_sc hbond_lr_bb hbond_sc	1.63674570421	0.596679891988
+hbond_sr_bb	2.08043968307	-0.117132984392
+fa_atr hbond_sr_bb	1.61769498349	0.606334065063
+fa_pair hbond_sr_bb	2.00490141659	0.215330729118
+fa_atr fa_pair hbond_sr_bb	1.62905873432	0.59894487251
+fa_rep hbond_sr_bb	2.16791680519	0.0346102161924
+fa_atr fa_rep hbond_sr_bb	1.65483148465	0.584471799036
+fa_pair fa_rep hbond_sr_bb	2.04788073584	0.203931241291
+fa_atr fa_pair fa_rep hbond_sr_bb	1.65862801262	0.580778783532
+fa_sol hbond_sr_bb	1.87674715418	0.393007585072
+fa_atr fa_sol hbond_sr_bb	1.60325011802	0.615851796781
+fa_pair fa_sol hbond_sr_bb	1.85828104918	0.412312054207
+fa_atr fa_pair fa_sol hbond_sr_bb	1.61254268682	0.609927012755
+fa_rep fa_sol hbond_sr_bb	1.95354533528	0.338871201245
+fa_atr fa_rep fa_sol hbond_sr_bb	1.63359044597	0.599166319942
+fa_pair fa_rep fa_sol hbond_sr_bb	1.91338778898	0.369995078874
+fa_atr fa_pair fa_rep fa_sol hbond_sr_bb	1.63474484957	0.597476601895
+hbond_bb_sc hbond_sr_bb	2.11894055299	-0.136600022066
+fa_atr hbond_bb_sc hbond_sr_bb	1.61263124499	0.609524728819
+fa_pair hbond_bb_sc hbond_sr_bb	2.02394336456	0.187062351189
+fa_atr fa_pair hbond_bb_sc hbond_sr_bb	1.62054306161	0.604400115168
+fa_rep hbond_bb_sc hbond_sr_bb	2.19617258432	0.00378707744658
+fa_atr fa_rep hbond_bb_sc hbond_sr_bb	1.63921993318	0.593929602424
+fa_pair fa_rep hbond_bb_sc hbond_sr_bb	2.06748508187	0.179344203758
+fa_atr fa_pair fa_rep hbond_bb_sc hbond_sr_bb	1.642818216	0.590821924887
+fa_sol hbond_bb_sc hbond_sr_bb	1.85840621683	0.414643203122
+fa_atr fa_sol hbond_bb_sc hbond_sr_bb	1.62125637649	0.604458566765
+fa_pair fa_sol hbond_bb_sc hbond_sr_bb	1.83984686269	0.431712426234
+fa_atr fa_pair fa_sol hbond_bb_sc hbond_sr_bb	1.62439248935	0.60229793052
+fa_rep fa_sol hbond_bb_sc hbond_sr_bb	1.9208047018	0.36902044477
+fa_atr fa_rep fa_sol hbond_bb_sc hbond_sr_bb	1.64493225745	0.591079303263
+fa_pair fa_rep fa_sol hbond_bb_sc hbond_sr_bb	1.89042011962	0.39193546125
+fa_atr fa_pair fa_rep fa_sol hbond_bb_sc hbond_sr_bb	1.64297051704	0.591646936567
+hbond_lr_bb hbond_sr_bb	2.0746985009	-0.0315823602242
+fa_atr hbond_lr_bb hbond_sr_bb	1.61927598686	0.605488322037
+fa_pair hbond_lr_bb hbond_sr_bb	2.00396667662	0.22165494078
+fa_atr fa_pair hbond_lr_bb hbond_sr_bb	1.63185015835	0.59727733621
+fa_rep hbond_lr_bb hbond_sr_bb	2.1635055983	0.0596287954288
+fa_atr fa_rep hbond_lr_bb hbond_sr_bb	1.65853360075	0.582467151176
+fa_pair fa_rep hbond_lr_bb hbond_sr_bb	2.04844658476	0.211205515872
+fa_atr fa_pair fa_rep hbond_lr_bb hbond_sr_bb	1.66330577731	0.578002794697
+fa_sol hbond_lr_bb hbond_sr_bb	1.86915413119	0.402580018746
+fa_atr fa_sol hbond_lr_bb hbond_sr_bb	1.6052696814	0.614705196368
+fa_pair fa_sol hbond_lr_bb hbond_sr_bb	1.85394330358	0.417805908846
+fa_atr fa_pair fa_sol hbond_lr_bb hbond_sr_bb	1.61557140616	0.608110631081
+fa_rep fa_sol hbond_lr_bb hbond_sr_bb	1.94771802133	0.349279487887
+fa_atr fa_rep fa_sol hbond_lr_bb hbond_sr_bb	1.63730647854	0.597034839677
+fa_pair fa_rep fa_sol hbond_lr_bb hbond_sr_bb	1.91113452224	0.375456083871
+fa_atr fa_pair fa_rep fa_sol hbond_lr_bb hbond_sr_bb	1.63906214048	0.594857486726
+hbond_bb_sc hbond_lr_bb hbond_sr_bb	2.10512442698	-0.0291289566371
+fa_atr hbond_bb_sc hbond_lr_bb hbond_sr_bb	1.60658034964	0.613521736634
+fa_pair hbond_bb_sc hbond_lr_bb hbond_sr_bb	2.01442431451	0.208794337086
+fa_atr fa_pair hbond_bb_sc hbond_lr_bb hbond_sr_bb	1.61578743114	0.607591497722
+fa_rep hbond_bb_sc hbond_lr_bb hbond_sr_bb	2.17968303255	0.0484564105675
+fa_atr fa_rep hbond_bb_sc hbond_lr_bb hbond_sr_bb	1.63447198922	0.59736166267
+fa_pair fa_rep hbond_bb_sc hbond_lr_bb hbond_sr_bb	2.05741405213	0.200280181011
+fa_atr fa_pair fa_rep hbond_bb_sc hbond_lr_bb hbond_sr_bb	1.6394357556	0.593347103663
+fa_sol hbond_bb_sc hbond_lr_bb hbond_sr_bb	1.8302977717	0.443914669072
+fa_atr fa_sol hbond_bb_sc hbond_lr_bb hbond_sr_bb	1.61693308958	0.607304606376
+fa_pair fa_sol hbond_bb_sc hbond_lr_bb hbond_sr_bb	1.81761856923	0.454177261438
+fa_atr fa_pair fa_sol hbond_bb_sc hbond_lr_bb hbond_sr_bb	1.62105557604	0.604502346256
+fa_rep fa_sol hbond_bb_sc hbond_lr_bb hbond_sr_bb	1.89078663426	0.401728724777
+fa_atr fa_rep fa_sol hbond_bb_sc hbond_lr_bb hbond_sr_bb	1.64188914846	0.593104233248
+fa_pair fa_rep fa_sol hbond_bb_sc hbond_lr_bb hbond_sr_bb	1.86784847243	0.416599803824
+fa_atr fa_pair fa_rep fa_sol hbond_bb_sc hbond_lr_bb hbond_sr_bb	1.6408303381	0.593045264451
+hbond_sc hbond_sr_bb	2.01730223537	0.184792407228
+fa_atr hbond_sc hbond_sr_bb	1.61451711291	0.608793163562
+fa_pair hbond_sc hbond_sr_bb	2.00725482912	0.236726338363
+fa_atr fa_pair hbond_sc hbond_sr_bb	1.6386052784	0.593173256257
+fa_rep hbond_sc hbond_sr_bb	2.10569212065	0.174995055154
+fa_atr fa_rep hbond_sc hbond_sr_bb	1.65535993394	0.585283277493
+fa_pair fa_rep hbond_sc hbond_sr_bb	2.05408066461	0.22846174373
+fa_atr fa_pair fa_rep hbond_sc hbond_sr_bb	1.67078336755	0.57365184681
+fa_sol hbond_sc hbond_sr_bb	1.87418229179	0.398390673952
+fa_atr fa_sol hbond_sc hbond_sr_bb	1.59329562994	0.622780294092
+fa_pair fa_sol hbond_sc hbond_sr_bb	1.87316561683	0.399750690816
+fa_atr fa_pair fa_sol hbond_sc hbond_sr_bb	1.62307796557	0.604399275489
+fa_rep fa_sol hbond_sc hbond_sr_bb	1.9529192028	0.347226462052
+fa_atr fa_rep fa_sol hbond_sc hbond_sr_bb	1.62676285973	0.605016009581
+fa_pair fa_rep fa_sol hbond_sc hbond_sr_bb	1.93078167206	0.35911264135
+fa_atr fa_pair fa_rep fa_sol hbond_sc hbond_sr_bb	1.64792189047	0.590826502645
+hbond_bb_sc hbond_sc hbond_sr_bb	2.04828013649	0.173759976974
+fa_atr hbond_bb_sc hbond_sc hbond_sr_bb	1.60551804552	0.614782923066
+fa_pair hbond_bb_sc hbond_sc hbond_sr_bb	2.01869186754	0.23171032049
+fa_atr fa_pair hbond_bb_sc hbond_sc hbond_sr_bb	1.62531824275	0.602056250916
+fa_rep hbond_bb_sc hbond_sc hbond_sr_bb	2.12089769602	0.174453412453
+fa_atr fa_rep hbond_bb_sc hbond_sc hbond_sr_bb	1.63455064836	0.598407662315
+fa_pair fa_rep hbond_bb_sc hbond_sc hbond_sr_bb	2.06366162594	0.224367600023
+fa_atr fa_pair fa_rep hbond_bb_sc hbond_sc hbond_sr_bb	1.64977204991	0.587610693172
+fa_sol hbond_bb_sc hbond_sc hbond_sr_bb	1.85425447172	0.42423761098
+fa_atr fa_sol hbond_bb_sc hbond_sc hbond_sr_bb	1.60978471185	0.612887244748
+fa_pair fa_sol hbond_bb_sc hbond_sc hbond_sr_bb	1.85293145822	0.423823072306
+fa_atr fa_pair fa_sol hbond_bb_sc hbond_sc hbond_sr_bb	1.63129257164	0.599212786629
+fa_rep fa_sol hbond_bb_sc hbond_sc hbond_sr_bb	1.91753702553	0.382824436613
+fa_atr fa_rep fa_sol hbond_bb_sc hbond_sc hbond_sr_bb	1.63540113399	0.599078448633
+fa_pair fa_rep fa_sol hbond_bb_sc hbond_sc hbond_sr_bb	1.90547651381	0.38671624811
+fa_atr fa_pair fa_rep fa_sol hbond_bb_sc hbond_sc hbond_sr_bb	1.651718764	0.587932976151
+hbond_lr_bb hbond_sc hbond_sr_bb	2.02072635435	0.180856590165
+fa_atr hbond_lr_bb hbond_sc hbond_sr_bb	1.61869664451	0.606295778406
+fa_pair hbond_lr_bb hbond_sc hbond_sr_bb	2.00777310275	0.237118193765
+fa_atr fa_pair hbond_lr_bb hbond_sc hbond_sr_bb	1.64135516423	0.591485003192
+fa_rep hbond_lr_bb hbond_sc hbond_sr_bb	2.10974068132	0.173671305227
+fa_atr fa_rep hbond_lr_bb hbond_sc hbond_sr_bb	1.66071795536	0.58211192678
+fa_pair fa_rep hbond_lr_bb hbond_sc hbond_sr_bb	2.05507461274	0.229374472728
+fa_atr fa_pair fa_rep hbond_lr_bb hbond_sc hbond_sr_bb	1.67469341473	0.571261807034
+fa_sol hbond_lr_bb hbond_sc hbond_sr_bb	1.87162704736	0.40226946199
+fa_atr fa_sol hbond_lr_bb hbond_sc hbond_sr_bb	1.59741352098	0.620309751887
+fa_pair fa_sol hbond_lr_bb hbond_sc hbond_sr_bb	1.86821703935	0.405548808612
+fa_atr fa_pair fa_sol hbond_lr_bb hbond_sc hbond_sr_bb	1.62596720102	0.602561993085
+fa_rep fa_sol hbond_lr_bb hbond_sc hbond_sr_bb	1.95102008185	0.351783861614
+fa_atr fa_rep fa_sol hbond_lr_bb hbond_sc hbond_sr_bb	1.63132043155	0.602216612016
+fa_pair fa_rep fa_sol hbond_lr_bb hbond_sc hbond_sr_bb	1.9266669651	0.364912022618
+fa_atr fa_pair fa_rep fa_sol hbond_lr_bb hbond_sc hbond_sr_bb	1.65136832355	0.588590512242
+hbond_bb_sc hbond_lr_bb hbond_sc hbond_sr_bb	2.04641962346	0.181446097867
+fa_atr hbond_bb_sc hbond_lr_bb hbond_sc hbond_sr_bb	1.60412836474	0.615838911284
+fa_pair hbond_bb_sc hbond_lr_bb hbond_sc hbond_sr_bb	2.01400142051	0.239928749736
+fa_atr fa_pair hbond_bb_sc hbond_lr_bb hbond_sc hbond_sr_bb	1.62275918841	0.603852589682
+fa_rep hbond_bb_sc hbond_lr_bb hbond_sc hbond_sr_bb	2.11743190046	0.182609556072
+fa_atr fa_rep hbond_bb_sc hbond_lr_bb hbond_sc hbond_sr_bb	1.63388081038	0.599144835512
+fa_pair fa_rep hbond_bb_sc hbond_lr_bb hbond_sc hbond_sr_bb	2.05814526386	0.232882565035
+fa_atr fa_pair fa_rep hbond_bb_sc hbond_lr_bb hbond_sc hbond_sr_bb	1.64803600143	0.589002716538
+fa_sol hbond_bb_sc hbond_lr_bb hbond_sc hbond_sr_bb	1.83488316441	0.443936282152
+fa_atr fa_sol hbond_bb_sc hbond_lr_bb hbond_sc hbond_sr_bb	1.61157831133	0.611783075658
+fa_pair fa_sol hbond_bb_sc hbond_lr_bb hbond_sc hbond_sr_bb	1.83296335239	0.443733804228
+fa_atr fa_pair fa_sol hbond_bb_sc hbond_lr_bb hbond_sc hbond_sr_bb	1.63168918267	0.598914578243
+fa_rep fa_sol hbond_bb_sc hbond_lr_bb hbond_sc hbond_sr_bb	1.89590443379	0.404828940332
+fa_atr fa_rep fa_sol hbond_bb_sc hbond_lr_bb hbond_sc hbond_sr_bb	1.63775499975	0.597500321868
+fa_pair fa_rep fa_sol hbond_bb_sc hbond_lr_bb hbond_sc hbond_sr_bb	1.88436980763	0.40818378897
+fa_atr fa_pair fa_rep fa_sol hbond_bb_sc hbond_lr_bb hbond_sc hbond_sr_bb	1.65276896202	0.587099711628
