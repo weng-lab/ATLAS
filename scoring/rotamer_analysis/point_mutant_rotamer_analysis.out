@@ -1,0 +1,8 @@
+Temp_PDB	True_PDB	Designed_Rotamers_States	True_Rotamer_States	Designed_Chi	True_Chi
+3MV7_WT_nan_Q55H_B_WT.pdb	3MV8.pdb	2,6	2,6	175.53,-150.03	167.17,-143.99
+1AO7_WT_nan_WT_nan_V7R.pdb	1QSE.pdb	2,2,2,3	3,1,2,2	-163.59,-173.07,-170.48,-86.61	-110.06,46.25,-175.26,162.23
+1AO7_WT_nan_WT_nan_Y5F.pdb	3QFJ.pdb	3,1	3,1	-61.62,97.64	-47.74,-77.15
+3VXR_WT_nan_WT_nan_F6L.pdb	3VXS.pdb	3,2	3,2	-65.24,166.16	-69.84,160.56
+4PRI_WT_nan_WT_nan_E5D.pdb	4PRH.pdb	3,1	3,5	-72.25,-15.16	-95.35,115.36
+4G8G_WT_nan_WT_nan_L6M.pdb	4G9F.pdb	3,2,1	3,2,1	-59.85,169.33,72.42	-63.51,177.08,68.47
+3QIU_WT_nan_WT_nan_K9E.pdb	3QIW.pdb	3,2,5	3,2,3	-64.02,165.74,-55.63	-42.88,-165.85,60.11
