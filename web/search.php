@@ -197,7 +197,7 @@
 					        </div>
 					    </div>
 					</div>
-					<div class="col-sm-3">
+					<div class="col-sm-2">
 	    				<div class="panel panel-warning">
 	    					<div class="panel-heading">
 	    						<h3 class="panel-title"> Energy </h3>
@@ -211,7 +211,7 @@
 					        </div>
 					    </div>
 					</div>
-					<div class="col-sm-3">
+					<div class="col-sm-2">
 	    				<div class="panel panel-success">
 	    					<div class="panel-heading">
 	    						<h3 class="panel-title"> Peptide </h3>
@@ -221,6 +221,44 @@
 				    				<!--Select Peptide sequence -->
 				    				<label for="peptide" > Peptide Sequence: </label>
 					                <input type="text" class="form-control" name="peptide" value="all">
+					            </div>
+					        </div>
+					    </div>
+					</div>
+					<div class="col-sm-2">
+	    				<div class="panel panel-danger">
+	    					<div class="panel-heading">
+	    						<h3 class="panel-title"> PDB </h3>
+	    					</div>
+	    					<div class="panel-body">
+				    			<div class="form-group">
+				    				<?php $link = database_connect(); ?>
+					    			<!-- Select PDB ID -->
+					                <?php
+					                $query = "SELECT DISTINCT true_PDB FROM Mutants WHERE true_PDB != ''";
+					                $result=mysqli_query($link, $query) or die(mysqli_error($link));
+					                $i = 0;
+					                while($row=mysqli_fetch_array($result)) {
+					                	$PDBids[$i] = $row['true_PDB'];
+					                    $i++;
+					                }
+					                sort($PDBids);
+					                ?>
+					           		<label for="ID" > ID: </label>
+					                <select class="form-control" name="pdbid">
+					                    <option>all</option>
+					                    <?php
+					                        for($j=0;$j<count($PDBids);$j++) {
+					                            ?>
+					                            <option>
+					                            <?php 
+					                            echo $PDBids[$j];
+					                            ?>
+					                            </option>
+					                            <?php
+					                        }
+					                    ?>
+					                </select>
 					            </div>
 					        </div>
 					    </div>

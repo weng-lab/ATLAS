@@ -85,6 +85,7 @@ $(document).ready(function() {
 
                 // Get all parameters from search form
                 $search_params = array();
+
                 if (isset($_POST['TCR'])) {
                     if ($_POST['TCR'] != 'all') {
                         $search_params[] = "(TCRname = '" . $_POST['TCR'] . "')";
@@ -167,6 +168,14 @@ $(document).ready(function() {
                         $search_params[] = "(PEPseq LIKE '%" . $_POST['peptide'] . "%')";
                     }
                 }
+
+                if (isset($_POST['pdbid'])) {
+                    if ($_POST['pdbid'] != 'all') {
+                        $search_params[] = "(true_PDB LIKE '%" . $_POST['pdbid'] . 
+                            "%' OR template_PDB LIKE '%" . $_POST['pdbid'] . "%')";
+                    }
+                }
+
 
                 $where_query = join(' AND ', $search_params);
                 if (empty($search_params)) {
