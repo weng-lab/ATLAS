@@ -1,6 +1,6 @@
 <?php
 function database_connect() {
-	$config = parse_ini_file('../.mysqlpasswd.ini');
+	$config = parse_ini_file('/app/.mysqlpasswd.ini');
 	//Weird difference in parsing ini between Linux and Windows install
 	$config['user'] = str_replace("'", "", $config['user']);
 	$config['pass'] = str_replace("'", "", $config['pass']);

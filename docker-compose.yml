@@ -17,6 +17,7 @@ services:
         - db
       volumes:
         - ../dockers/atlas/new/tcr_structure_database.tar.gz:/var/www/html/web/tables/tcr_structure_database.tar.gz
+        - ../dockers/atlas/new/.mysqlpasswd.ini:/app/.mysqlpasswd.ini:ro
       labels:
         - traefik.backend=whoami
         - traefik.frontend.rule=PathPrefixStrip:/
