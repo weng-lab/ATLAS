@@ -9,12 +9,14 @@ services:
         - MYSQL_USER=borrmant
         - MYSQL_PASSWORD=sqlpsswd
       volumes:
-        - ../dockers/atlas/dump.sql:/docker-entrypoint-initdb.d/dump.sql
+        - ../dockers/atlas/new/dump.sql:/docker-entrypoint-initdb.d/dump.sql
 
     www:
       build: .
       depends_on:
         - db
+      volumes:
+        - ../dockers/atlas/new/tcr_structure_database.tar.gz:/var/www/html/web/tables/tcr_structure_database.tar.gz
       labels:
         - traefik.backend=whoami
         - traefik.frontend.rule=PathPrefixStrip:/

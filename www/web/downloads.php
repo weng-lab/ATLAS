@@ -14,10 +14,10 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        
+
         <link href="../bootstrap/less/bootstrap.css" rel="stylesheet">
         <link href="my_css.css" rel="stylesheet"/>
-        <title>ATLAS: Database of TCR-pMHC affinities and structures</title>    
+        <title>ATLAS: Database of TCR-pMHC affinities and structures</title>
     </head>
     <body>
     <?php require 'ATLAS_functions.php'; ?>
@@ -61,7 +61,7 @@
                             <a href="tables/TCRs.xlsx" class="btn btn-primary">
                                 <span class="glyphicon glyphicon-download"></span> TCR gene table
                             </a>
-                        </div> 
+                        </div>
                     </div>
                 </div>
                  <div class="col-sm-6">
@@ -74,7 +74,7 @@
                             <a href="tables/MHCs.xlsx" class="btn btn-primary">
                                 <span class="glyphicon glyphicon-download"></span> MHC class table
                             </a>
-                        </div> 
+                        </div>
                     </div>
                 </div>
                 <!-- <div class="col-sm-4">
@@ -87,7 +87,7 @@
                             <a href="tables/Authors.xlsx"  class="btn btn-primary">
                                 <span class="glyphicon glyphicon-download"></span> Authors table
                             </a>
-                        </div> 
+                        </div>
                     </div>
                 </div> -->
             </div>
@@ -99,12 +99,12 @@
                             <h3 class="panel-title"> ATLAS </h3>
                         </div>
                         <div class="panel-body">
-                            <p> Full ATLAS table including TCR/peptide/MHC mutations, IDs for template PDBs, 
+                            <p> Full ATLAS table including TCR/peptide/MHC mutations, IDs for template PDBs,
                                 binding data, and experimental details<p>
                             <a href="tables/ATLAS.xlsx"  class="btn btn-primary">
                                 <span class="glyphicon glyphicon-download"></span> ATLAS table
                             </a>
-                        </div> 
+                        </div>
                     </div>
                 </div>
             </div>
@@ -116,14 +116,14 @@
                             <h3 class="panel-title"> TCR-pMHC structures </h3>
                         </div>
                         <div class="panel-body">
-                            <p> Dataset of all TCR-pMHC structures in ATLAS with the following adjustments: 
-                                renaming of chains, truncation of chains to binding interface, and removal of 
+                            <p> Dataset of all TCR-pMHC structures in ATLAS with the following adjustments:
+                                renaming of chains, truncation of chains to binding interface, and removal of
                                 water molecules. For ATLAS entries lacking full 3D strucutres, models were generated
                                 from template structures using the Rosetta protein modeling suite<p>
-                            <a href="tables/tcr_structure_database.tar"  class="btn btn-primary">
+                            <a href="tables/tcr_structure_database.tar.gz"  class="btn btn-primary">
                                 <span class="glyphicon glyphicon-download"></span> TCR-pMHC structures
                             </a>
-                        </div> 
+                        </div>
                     </div>
                 </div>
             </div>
@@ -143,7 +143,7 @@
                 <br></br>
             </footer>
         </div>
-    
+
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
