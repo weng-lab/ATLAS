@@ -5,25 +5,25 @@ function database_connect() {
 	$config['user'] = str_replace("'", "", $config['user']);
 	$config['pass'] = str_replace("'", "", $config['pass']);
 	$config['db'] = str_replace("'", "", $config['db']);
-	$link = mysqli_connect('localhost', $config['user'], 
+	$link = mysqli_connect('db', $config['user'],
 		  $config['pass'], $config['db']);
-	if (!$link)   
-	{   
-	  $error = 'Unable to connect to the database server.';   
-	  echo $error; 
-	  exit();   
-	}   
-	if (!mysqli_set_charset($link, 'utf8'))   
-	{   
-	  $error = 'Unable to set database connection encoding.';   
-	  echo $error;   
-	  exit();   
-	}  
-	if (!mysqli_select_db($link, 'atlas'))   
-	{   
-	  $error3 = 'Unable to locate the atlas database.';   
-	  echo $error;  
-	  exit();   
+	if (!$link)
+	{
+	  $error = 'Unable to connect to the database server.';
+	  echo $error;
+	  exit();
+	}
+	if (!mysqli_set_charset($link, 'utf8'))
+	{
+	  $error = 'Unable to set database connection encoding.';
+	  echo $error;
+	  exit();
+	}
+	if (!mysqli_select_db($link, 'atlas'))
+	{
+	  $error3 = 'Unable to locate the atlas database.';
+	  echo $error;
+	  exit();
 	}
 	return $link;
 }
