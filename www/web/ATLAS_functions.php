@@ -1,7 +1,7 @@
 <?php
 function database_connect() {
 	$config['user'] = 'borrmant';
-	$config['pass'] = rtrim(file_get_contents("/run/secrets/mysql_password"));
+	$config['pass'] = rtrim(file_get_contents("/run/secrets/atlas_db_user_passwd"));
 	$config['db'] = 'atlas';
 
 	$link = mysqli_connect('db', $config['user'],
