@@ -1,10 +1,9 @@
 <?php
 function database_connect() {
-	$config = parse_ini_file('/app/.mysqlpasswd.ini');
-	//Weird difference in parsing ini between Linux and Windows install
-	$config['user'] = str_replace("'", "", $config['user']);
-	$config['pass'] = str_replace("'", "", $config['pass']);
-	$config['db'] = str_replace("'", "", $config['db']);
+	$config['user'] = 'borrmant';
+	$config['pass'] = rtrim(file_get_contents("/run/secrets/mysql_password"));
+	$config['db'] = 'atlas';
+
 	$link = mysqli_connect('db', $config['user'],
 		  $config['pass'], $config['db']);
 	if (!$link)
