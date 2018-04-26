@@ -7,7 +7,7 @@ services:
         - MYSQL_ROOT_PASSWORD=asdfkjhalsdfh
         - MYSQL_DATABASE=atlas
         - MYSQL_USER=borrmant
-        - MYSQL_PASSWORD=sqlpsswd
+        - MYSQL_PASSWORD_FILE=./.mysqlpw.txt
       volumes:
         - ../dockers/atlas/new/dump.sql:/docker-entrypoint-initdb.d/dump.sql
 
@@ -17,7 +17,7 @@ services:
         - db
       volumes:
         - ../dockers/atlas/new/tcr_structure_database.tar.gz:/var/www/html/web/tables/tcr_structure_database.tar.gz
-        - ../dockers/atlas/new/.mysqlpasswd.ini:/run/secrets/atlas_db_user_passwd:ro
+        - ./.mysqlpw.txt:/run/secrets/atlas_db_user_passwd:ro
       labels:
         - traefik.backend=whoami
         - traefik.frontend.rule=PathPrefixStrip:/
