@@ -101,3 +101,5 @@ TAGS
 
 .mysqlpasswd.ini
 .mysqlpw.txt
+
+db.env

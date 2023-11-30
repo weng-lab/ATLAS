@@ -1,34 +1,39 @@
 version: '3'
 
 services:
-    db:
-      image: mariadb:10.2
-      environment:
-        - MYSQL_ROOT_PASSWORD=asdfkjhalsdfh
-        - MYSQL_DATABASE=atlas
-        - MYSQL_USER=borrmant
-        - MYSQL_PASSWORD_FILE=./.mysqlpw.txt
-      volumes:
-        - ../dockers/atlas/new/dump.sql:/docker-entrypoint-initdb.d/dump.sql
+  db:
+    image: mariadb:10
+    env_file:
+      - db.env
+      # db.env contains values for MYSQL_ROOT_PASSWORD, MYSQL_DATABASE, MYSQL_USER, MYSQL_PASSWORD_FILE
+    volumes:
+      - /zata/public_html_atlas/dump.sql:/docker-entrypoint-initdb.d/dump.sql:ro
 
-    www:
-      build: .
-      depends_on:
-        - db
-      volumes:
-        - ../dockers/atlas/new/tcr_structure_database.tar.gz:/var/www/html/web/tables/tcr_structure_database.tar.gz
-        - ./.mysqlpw.txt:/run/secrets/atlas_db_user_passwd:ro
-      labels:
-        - traefik.backend=whoami
-        - traefik.frontend.rule=PathPrefixStrip:/
-        - traefik.port=80
-        - traefik.enable=true
+  www:
+    build: .
+    depends_on:
+      - db
+    volumes:
+      - /zata/public_html_atlas/new/tcr_structure_database.tar.gz:/var/www/html/web/tables/tcr_structure_database.tar.gz
+      - ./.mysqlpw.txt:/run/secrets/atlas_db_user_passwd:ro
+    labels:
+      - "traefik.http.routers.www.rule=PathPrefix(`/`)"
+      - "traefik.http.services.www.loadbalancer.server.port=80"
 
-    traefik:
-      image: traefik
-      command: -c /dev/null --api --docker --docker.domain=docker.localhost #--logLevel=DEBUG
-      volumes:
-        - /var/run/docker.sock:/var/run/docker.sock
-      ports:
-        - 80:80
-        - 8080:8080
+  traefik:
+    image: traefik:v2.4
+    command:
+      - "--api.insecure=true" # Enable the Traefik Dashboard
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - "80:80" # Traefik HTTP port
+      - "8080:8080" # Traefik Dashboard port
+
+    # Optional: Labels for the Traefik Dashboard
+    labels:
+      - "traefik.http.routers.api.rule=Host(`traefik.docker.localhost`)"
+      - "traefik.http.routers.api.service=api@internal"
