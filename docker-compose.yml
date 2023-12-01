@@ -3,6 +3,7 @@ version: '3'
 services:
   traefik:
     image: traefik:v2.4
+    restart: unless-stopped
     command:
       - --providers.docker=true
       - --entrypoints.web.address=:80
@@ -17,6 +18,7 @@ services:
 
   db:
     image: mariadb:10
+    restart: unless-stopped
     env_file:
       - db.env
     volumes:
@@ -26,6 +28,7 @@ services:
 
   www:
     build: .
+    restart: unless-stopped
     depends_on:
       - db
     volumes:
