@@ -20,7 +20,7 @@ services:
     image: mariadb:10
     restart: unless-stopped
     env_file:
-      - db.env
+      - db.env # db.env contains values for MYSQL_ROOT_PASSWORD, MYSQL_DATABASE, MYSQL_USER, MYSQL_PASSWORD_FILE
     volumes:
       - /zata/public_html_atlas/01_dump.sql:/docker-entrypoint-initdb.d/dump.sql:ro
     networks:
